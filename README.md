@@ -34,7 +34,7 @@ Uses styled-components with `babel-macro`
 ### Jest
 For testing Jest is configure to use typescript.
 
-## SCRIPTS
+### SCRIPTS
 `npm start` : run the local development server.
 `npm run build-prod`: build for production
 `npm run build-prod`: build for remote dev server
@@ -44,7 +44,7 @@ For testing Jest is configure to use typescript.
 `npm run i18n:extract:clean` extract translatable string form the code and generate a messages.json file for each enabled languages.
 `npm run i18n:compile` compile the messages.json files in javascript code.
 
-## HOW TO START
+### HOW TO START
 1. `npm install`
 2. (optional) add one or more languages:  `npm run i18n:add en es fr it`
 3. Start coding
