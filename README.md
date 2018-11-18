@@ -65,3 +65,6 @@ For testing Jest is configure to use typescript.
 1. `npm install`
 2. (optional) add one or more language:  `npm run i18n:add en es fr it`
 3. Start coding
+
+#### Note:
+The project is currently under development. It uses react next (currently 16.7.0-alpha.2).
