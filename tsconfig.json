@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "allowJs": true,
+    "lib": ["dom", "es2017"],
+    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    "pretty": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "paths": {
+      "models/*": ["src/models/*"],
+      "images/*": ["src/images/*"],
+      "src/*": ["src/*"],
+      "utils/*": ["src/utils/*"],
+      "components/*": ["src/components/*"],
+    }
+  },
+  "exclude": ["node_modules", "build", "locale", "config"],
+  "include": ["./src/**/*", "./typings/**/*.d.ts"]
+}

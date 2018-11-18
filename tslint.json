@@ -1,0 +1,15 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "quotemark": false,
+    "no-console": false,
+    "arrow-parens": false,
+    "trailing-comma": false,
+    "member-access": false,
+    "jsx-boolean-value": false,
+    "interface-over-type-literal": false,
+    "jsx-no-lambda": false,
+    "no-angle-bracket-type-assertion": false,
+    "experimentalDecorators": false
+  }
+}

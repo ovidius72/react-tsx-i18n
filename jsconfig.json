@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "models": ["src/models/*"],
+      "images": ["src/images/*"],
+      "utils": ["src/utils/*"],
+      "components": [
+        "src/components/*"
+      ],
+      "src": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "build", "locale", "config"],
+  "include": ["src/**/*"]
+}
