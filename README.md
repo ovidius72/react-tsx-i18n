@@ -1,4 +1,4 @@
-# React Starter Kit
+# React Starter Kit (WIP)
 React + Typescript + MST + i18n + Styled Components
 
 ### Webpack 4
