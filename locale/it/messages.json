@@ -1,0 +1,119 @@
+{
+  "At least one digit is required": {
+    "translation": "E' richiesto almeno un numero.",
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        15
+      ]
+    ]
+  },
+  "At least one lowercase character is required": {
+    "translation": "E' richiesto almeno un carattere in minuscolo",
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        13
+      ]
+    ]
+  },
+  "At least one special character is required ($@!%*?&#_-)": {
+    "translation": "E' richiesto almeno un carattere speciale ($@!%*?&#_-)",
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        16
+      ]
+    ]
+  },
+  "At least one uppercase character is required": {
+    "translation": "E' richiesto almeno un carattere in maiuscolo",
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        14
+      ]
+    ]
+  },
+  "Blank spaces are not allowed": {
+    "translation": "Gli spazi vuoti non sono consentiti",
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        12
+      ]
+    ]
+  },
+  "Error": {
+    "translation": "Errore",
+    "origin": [
+      [
+        "src/models/uiStore.ts",
+        55
+      ]
+    ]
+  },
+  "Language": {
+    "translation": "Lingua",
+    "origin": [
+      [
+        "src/form/Language/LanguageSelector.tsx",
+        17
+      ]
+    ]
+  },
+  "Main Page": {
+    "translation": "Pagina Principale",
+    "origin": [
+      [
+        "src/App.tsx",
+        71
+      ]
+    ]
+  },
+  "Password is required": {
+    "translation": "E' obbligatorio immettere la password",
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        10
+      ]
+    ]
+  },
+  "Password must be at least 7 characters": {
+    "translation": "La password deve contenere almeno 7 caratteri",
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        11
+      ]
+    ]
+  },
+  "Success": {
+    "translation": "Successo",
+    "origin": [
+      [
+        "src/models/uiStore.ts",
+        67
+      ]
+    ]
+  },
+  "Wrong password format": {
+    "translation": "Formato password non corretto",
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        17
+      ]
+    ]
+  },
+  "warning": {
+    "translation": "Avviso",
+    "origin": [
+      [
+        "src/models/uiStore.ts",
+        79
+      ]
+    ]
+  }
+}

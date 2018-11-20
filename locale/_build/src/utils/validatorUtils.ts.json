@@ -1,0 +1,66 @@
+{
+  "Password is required": {
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        10
+      ]
+    ]
+  },
+  "Password must be at least 7 characters": {
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        11
+      ]
+    ]
+  },
+  "Blank spaces are not allowed": {
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        12
+      ]
+    ]
+  },
+  "At least one lowercase character is required": {
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        13
+      ]
+    ]
+  },
+  "At least one uppercase character is required": {
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        14
+      ]
+    ]
+  },
+  "At least one digit is required": {
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        15
+      ]
+    ]
+  },
+  "At least one special character is required ($@!%*?&#_-)": {
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        16
+      ]
+    ]
+  },
+  "Wrong password format": {
+    "origin": [
+      [
+        "src/utils/validatorUtils.ts",
+        17
+      ]
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 import { Instance, SnapshotOut, types } from 'mobx-state-tree';
 
-import { loadCatalog } from '../i18n';
+import { enabledLanguages } from '../languages/enabledLanguages';
+import { loadCatalog } from '../languages/i18n';
 
 export interface ILanguageStoreType extends SnapshotOut<typeof LanguageStore> {}
 export interface ILanguageStore extends Instance<typeof LanguageStore> {}
@@ -14,13 +15,10 @@ export interface ILanguage {
 
 const LanguageStore = types
   .model('LanguageStore', {
-    catalog: types.optional(types.frozen<any>(), {}),
-    code: types.maybeNull(types.string),
-    dir: types.maybeNull(types.string),
-    flag: types.maybeNull(types.string),
-    lang: types.optional(types.string, 'en'),
+    catalog: types.optional(types.frozen(), {}),
+    enabled: types.optional(types.array(types.frozen<ILanguage>()), enabledLanguages),
+    language: types.optional(types.frozen<ILanguage>(), enabledLanguages[0]),
     loading: false,
-    text: types.maybeNull(types.string),
   })
   .actions(self => {
     const that = self as ILanguageStore;
@@ -28,18 +26,20 @@ const LanguageStore = types
       setCatalog(catalog: any) {
         that.catalog = catalog;
       },
+      setLanguageByCode(code: string) {
+        const language = enabledLanguages.find(l => l.code === code);
+        if (language) {
+          that.loadCatalog(language);
+        }
+      },
       setLanguage(language: ILanguage) {
-        // TODO: Save language changes to the server.
-        self.loading = true;
-        self.lang = language.lang;
-        self.flag = language.flag;
-        self.code = language.code;
-        self.text = language.text;
-        self.dir = language.dir;
-
+        that.language = language;
+      },
+      loadCatalog(language: ILanguage) {
+        that.setLoading(true);
         loadCatalog(language.lang)
           .then((catalog: any) => {
-            console.log(catalog);
+            that.setLanguage(language);
             that.setCatalog(catalog);
             that.setLoading(false);
           })
@@ -48,14 +48,18 @@ const LanguageStore = types
             that.setLoading(false);
           });
       },
-
       setLoading(value: boolean) {
         self.loading = value;
       },
     };
   })
   .views(self => ({
-    //
+    get enabledLanguages() {
+      return self.enabled;
+    },
+    get activeLanguage() {
+      return self.language;
+    },
   }));
 
 export default LanguageStore;

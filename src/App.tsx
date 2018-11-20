@@ -1,14 +1,13 @@
-import { I18nProvider } from '@lingui/react';
+import { I18nProvider, Trans } from '@lingui/react';
+import AppMessages from 'components/AppMessages/AppMessages/AppMessages';
 import Logo from 'images/Logo.png';
 import { inject, observer } from 'mobx-react';
+import { ILanguageStore } from 'models/languageStore';
+import { IUIStore } from 'models/uiStore';
 import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
+import ConnectedLanguageSelector from 'src/form/Language/ConnectedLanguageSelector';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
-
-import AppMessages from './components/AppMessages/AppMessages/AppMessages';
-import { LanguageSelector } from './form/Language/LanguageSelector';
-import { ILanguageStore } from './models/languageStore';
-import { IUIStore } from './models/uiStore';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
@@ -69,9 +68,9 @@ class App extends React.Component<Props, {}> {
       throw Error('Error injecting stores');
     }
 
-    const { lang, catalog, loading: loadingCatalog } = languageStore;
+    const { catalog, loading: loadingCatalog, activeLanguage } = languageStore;
     return (
-      <I18nProvider language={lang} catalogs={catalog}>
+      <I18nProvider language={activeLanguage.lang} catalogs={{ [activeLanguage.lang]: catalog }}>
         {loadingCatalog ? (
           <div>Loading...</div>
         ) : (
@@ -82,13 +81,15 @@ class App extends React.Component<Props, {}> {
                   <div className="logo-container">
                     <LogoImage src={Logo} />
                   </div>
-                  <LanguageSelector languages={['it', 'en']} onLanguageChange={console.log} />
+                  <ConnectedLanguageSelector />
                   <Title>React + Typescript + MST + i18n</Title>
                   <AppMessages
                     onMessageClose={this.props.uiStore!.setMessageRead}
                     messages={this.props.uiStore!.unreadMessages}
                   />
-                  <p>Main Page</p>
+                  <p>
+                    <Trans>Main Page</Trans>
+                  </p>
                 </div>
               </Wrapper>
               <GlobalStyle />

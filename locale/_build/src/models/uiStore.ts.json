@@ -1,0 +1,26 @@
+{
+  "Error": {
+    "origin": [
+      [
+        "src/models/uiStore.ts",
+        55
+      ]
+    ]
+  },
+  "Success": {
+    "origin": [
+      [
+        "src/models/uiStore.ts",
+        67
+      ]
+    ]
+  },
+  "warning": {
+    "origin": [
+      [
+        "src/models/uiStore.ts",
+        79
+      ]
+    ]
+  }
+}

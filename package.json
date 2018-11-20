@@ -11,8 +11,8 @@
     "build-dev": "cross-env NODE_ENV=development webpack --config ./config/webpack.config.dev.js --mode development",
     "build-prod": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.prod.js --mode production",
     "test": "jest",
-    "test:watchAll": "jest -u --watchAll",
-    "test:watch": "jest -u --watch --verbose --silent=false",
+    "test:watchAll": "jest --watchAll",
+    "test:watch": "jest --watch --verbose --silent=false",
     "i18n:extract": "cross-env NODE_ENV=lingui lingui extract",
     "i18n:add": "cross-env NODE_ENV=lingui lingui add-locale",
     "i18n:extract:clean": "cross-env NODE_ENV=lingui lingui extract --clean",
@@ -23,7 +23,14 @@
     "type": "git",
     "url": "https://github.com/ovidius72/react-tsx-i18n.git"
   },
-  "keywords": ["react", "mobx state tree", "typescript", "i18n", "lingui", "styled-components"],
+  "keywords": [
+    "react",
+    "mobx state tree",
+    "typescript",
+    "i18n",
+    "lingui",
+    "styled-components"
+  ],
   "author": "Antonio Pantano",
   "license": "ISC",
   "homepage": "https://github.com/ovidius72/react-tsx-i18n.git",
@@ -46,6 +53,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/jest": "^23.3.9",
     "@types/lingui__core": "^2.2.0",
+    "@types/lingui__macro": "^2.7.0",
     "@types/lingui__react": "^2.5.0",
     "@types/mobx-devtools-mst": "^0.9.0",
     "@types/node": "^8.0.26",
@@ -130,8 +138,15 @@
   "lingui": {
     "fallbackLocale": "en",
     "sourceLocale": "en",
-    "srcPathDirs": ["./src"],
-    "srcPathIgnorePatterns": ["/node_modules/", "/public/", ".history", ".vscode"],
+    "srcPathDirs": [
+      "./src"
+    ],
+    "srcPathIgnorePatterns": [
+      "/node_modules/",
+      "/public/",
+      ".history",
+      ".vscode"
+    ],
     "format": "lingui",
     "localeDir": "./locale"
   },
@@ -143,12 +158,19 @@
         }
       }
     },
-    "setupFiles": ["<rootDir>/test/test-shim.js", "<rootDir>/test/test-setup.js"],
+    "setupFiles": [
+      "<rootDir>/test/test-shim.js",
+      "<rootDir>/test/test-setup.js"
+    ],
     "moduleNameMapper": {
       "^utils(.*)$": "<rootDir>/src/utils/$1",
       "^models(.*)$": "<rootDir>/src/models/$1"
     },
-    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest",
       "^.+\\.jsx?$": "<rootDir>/node_modules/babel-jest"
@@ -164,7 +186,9 @@
       "/.history/",
       "/node_modules/"
     ],
-    "testMatch": ["**/__tests__/*.(ts|tsx|js)"]
+    "testMatch": [
+      "**/__tests__/*.(ts|tsx|js)"
+    ]
   },
   "_moduleAliases": {
     "models": "src/models",

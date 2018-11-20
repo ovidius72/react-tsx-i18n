@@ -63,7 +63,7 @@ For testing Jest is configure to use typescript.
 
 ### How to start
 1. `npm install`
-2. (optional) add one or more language:  `npm run i18n:add en es fr it`
+2. (optional) add one or more languages:  `npm run i18n:add en es fr it`
 3. Start coding
 
 #### Note:
