@@ -1,0 +1,34 @@
+{
+  "Internationalization": {
+    "origin": [
+      [
+        "src/pages/MultiLanguage/MultiLanguage.tsx",
+        5
+      ]
+    ]
+  },
+  "Language page.": {
+    "origin": [
+      [
+        "src/pages/MultiLanguage/MultiLanguage.tsx",
+        8
+      ]
+    ]
+  },
+  "Test message": {
+    "origin": [
+      [
+        "src/pages/MultiLanguage/MultiLanguage.tsx",
+        9
+      ]
+    ]
+  },
+  "Add a message": {
+    "origin": [
+      [
+        "src/pages/MultiLanguage/MultiLanguage.tsx",
+        10
+      ]
+    ]
+  }
+}

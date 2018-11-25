@@ -2,10 +2,6 @@ import { i18nMark } from '@lingui/react';
 import { Instance, SnapshotIn, SnapshotOut, types } from 'mobx-state-tree';
 import { uuid } from 'src/utils/appUtils';
 
-import { loadTheme } from '../../styles/themes';
-
-// export type __IModelType = IModelType<any, any>;
-
 enum Status {
   error = 'ERROR',
   warning = 'WARNING',
@@ -55,8 +51,6 @@ const UIStore = types
   .model('UIStore', {
     loading: false,
     messages: types.optional(types.array(MessageStore), []),
-    theme: types.optional(types.frozen(), {}),
-    themeName: types.optional(types.string, 'dark'),
   })
   .actions(self => {
     const that = self as IUIStore;
@@ -132,30 +126,12 @@ const UIStore = types
       stopLoading() {
         self.loading = false;
       },
-      setTheme(theme: any) {
-        that.theme = theme;
-      },
-      setThemeByName(themeName: string) {
-        that.loading = true;
-        that.themeName = themeName;
-        loadTheme(themeName).then(loadedTheme => {
-          that.setTheme(loadedTheme.default);
-          console.log(loadedTheme.default);
-          that.setLoading(false);
-        });
-      },
     };
   })
   .views(self => {
     const views = {
       get unreadMessages(): IMessageStore[] {
         return self.messages.slice().filter((m: IMessageStore) => m.read === false);
-      },
-      get activeThemeName() {
-        return self.themeName;
-      },
-      get activeTheme() {
-        return self.theme.global ? self.theme : undefined;
       },
     };
     return views;

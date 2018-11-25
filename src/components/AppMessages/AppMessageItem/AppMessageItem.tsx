@@ -17,6 +17,7 @@ const Wrapper = styled.article`
   border-radius: .2em;
   padding: .5em;
   position: relative;
+  margin: .5em 0;
 `;
 const Header = styled.h3`
   font-size: 1.2em;

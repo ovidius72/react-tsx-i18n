@@ -1,0 +1,18 @@
+{
+  "Home": {
+    "origin": [
+      [
+        "src/routes/routes.tsx",
+        12
+      ]
+    ]
+  },
+  "Language": {
+    "origin": [
+      [
+        "src/routes/routes.tsx",
+        22
+      ]
+    ]
+  }
+}

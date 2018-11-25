@@ -1,119 +1,82 @@
 {
+  "Add a message": {
+    "translation": "Add a message",
+    "origin": [["src/pages/MultiLanguage/MultiLanguage.tsx", 10]]
+  },
   "At least one digit is required": {
     "translation": "At least one digit is required",
-    "origin": [
-      [
-        "src/utils/validatorUtils.ts",
-        15
-      ]
-    ]
+    "origin": [["src/utils/validatorUtils.ts", 15]]
   },
   "At least one lowercase character is required": {
     "translation": "At least one lowercase character is required",
-    "origin": [
-      [
-        "src/utils/validatorUtils.ts",
-        13
-      ]
-    ]
+    "origin": [["src/utils/validatorUtils.ts", 13]]
   },
   "At least one special character is required ($@!%*?&#_-)": {
     "translation": "At least one special character is required ($@!%*?&#_-)",
-    "origin": [
-      [
-        "src/utils/validatorUtils.ts",
-        16
-      ]
-    ]
+    "origin": [["src/utils/validatorUtils.ts", 16]]
   },
   "At least one uppercase character is required": {
     "translation": "At least one uppercase character is required",
-    "origin": [
-      [
-        "src/utils/validatorUtils.ts",
-        14
-      ]
-    ]
+    "origin": [["src/utils/validatorUtils.ts", 14]]
   },
   "Blank spaces are not allowed": {
     "translation": "Blank spaces are not allowed",
-    "origin": [
-      [
-        "src/utils/validatorUtils.ts",
-        12
-      ]
-    ]
+    "origin": [["src/utils/validatorUtils.ts", 12]]
   },
   "Error": {
     "translation": "Error",
-    "origin": [
-      [
-        "src/models/uiStore.ts",
-        55
-      ]
-    ]
+    "origin": [["src/models/uiStore.ts", 51]]
+  },
+  "Home": {
+    "translation": "Home",
+    "origin": [["src/routes/routes.tsx", 12]]
+  },
+  "Home Page": {
+    "translation": "Home Page",
+    "origin": [["src/pages/Home/Home.tsx", 5]]
+  },
+  "Internationalization": {
+    "translation": "Internationalization",
+    "origin": [["src/pages/MultiLanguage/MultiLanguage.tsx", 5]]
   },
   "Language": {
     "translation": "Language",
-    "origin": [
-      [
-        "src/form/Language/LanguageSelector.tsx",
-        17
-      ]
-    ]
+    "origin": [["src/form/Language/LanguageSelector.tsx", 17], ["src/routes/routes.tsx", 22]]
   },
-  "Main Page": {
-    "translation": "Main Page",
-    "origin": [
-      [
-        "src/App.tsx",
-        71
-      ]
-    ]
+  "Language page.": {
+    "translation": "Language page.",
+    "origin": [["src/pages/MultiLanguage/MultiLanguage.tsx", 8]]
   },
   "Password is required": {
     "translation": "Password is required",
-    "origin": [
-      [
-        "src/utils/validatorUtils.ts",
-        10
-      ]
-    ]
+    "origin": [["src/utils/validatorUtils.ts", 10]]
   },
   "Password must be at least 7 characters": {
     "translation": "Password must be at least 7 characters",
-    "origin": [
-      [
-        "src/utils/validatorUtils.ts",
-        11
-      ]
-    ]
+    "origin": [["src/utils/validatorUtils.ts", 11]]
   },
   "Success": {
     "translation": "Success",
-    "origin": [
-      [
-        "src/models/uiStore.ts",
-        67
-      ]
-    ]
+    "origin": [["src/models/uiStore.ts", 63]]
+  },
+  "Test message": {
+    "translation": "Test message",
+    "origin": [["src/pages/MultiLanguage/MultiLanguage.tsx", 9]]
+  },
+  "This is the home page": {
+    "translation": "This is the home page",
+    "origin": [["src/pages/Home/Home.tsx", 5]]
+  },
+  "What": {
+    "translation": "sss",
+    "origin": [["src/layout/Header/Header.tsx", 45]]
   },
   "Wrong password format": {
     "translation": "Wrong password format",
-    "origin": [
-      [
-        "src/utils/validatorUtils.ts",
-        17
-      ]
-    ]
+    "origin": [["src/utils/validatorUtils.ts", 17]]
   },
   "warning": {
     "translation": "warning",
-    "origin": [
-      [
-        "src/models/uiStore.ts",
-        79
-      ]
-    ]
+    "origin": [["src/models/uiStore.ts", 75]]
   }
 }

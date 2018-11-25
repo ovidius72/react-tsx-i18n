@@ -23,6 +23,9 @@ const LanguageStore = types
   .actions(self => {
     const that = self as ILanguageStore;
     return {
+      afterCreate() {
+        that.setLanguageByCode(self.language.code);
+      },
       setCatalog(catalog: any) {
         that.catalog = catalog;
       },
