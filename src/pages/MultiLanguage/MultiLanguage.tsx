@@ -7,7 +7,6 @@ export default () => (
   <ContentLayout
     title={i18nMark('Internationalization')}
     render={({ uiStore, i18n }) => {
-      console.log('i18n', i18n);
       return (
         <div>
           <p>{i18n!.t`Language page.`}</p>

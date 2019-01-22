@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 17px;
     margin: 0;
+    background-color: white;
     padding: 0;
     line-height: 1em;
     color: #404040;
@@ -21,38 +22,33 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 interface IAppProps {
-  uiStore?: IUIStore;
-  languageStore?: ILanguageStore;
+  uiStore: IUIStore;
+  languageStore: ILanguageStore;
 }
 
 type Props = IAppProps & RouteComponentProps;
 
 @inject('uiStore', 'languageStore')
 @observer
-class App extends React.Component<Props, {}> {
+class App extends React.Component<any, {}> {
   componentDidMount() {
-    this.props.uiStore!.setMessagesRead();
-    // this.props.uiStore!.addSuccessMessage('Welcome to React TSX');
+    this.injectedProps.uiStore!.setMessagesRead();
+  }
+
+  get injectedProps():Props {
+    return this.props as Props;
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    const { uiStore, location: { pathname } } = this.props;
+    const { uiStore, location: { pathname } } = this.injectedProps;
 
     const { pathname: oldPathname } = nextProps.location;
     // when location changes app messages are set to visited so that they will not be showed on the next page.
-    if (uiStore && pathname !== oldPathname) {
-      console.log('pathname', pathname);
-      console.log('oldPathname', oldPathname);
-      uiStore.setVisitedMessagesRead();
-    }
+    uiStore.setVisitedMessagesRead();
   }
 
   render() {
-    const { uiStore, languageStore } = this.props;
-    if (!uiStore || !languageStore) {
-      throw Error('Error injecting stores');
-    }
-
+    const { uiStore, languageStore } = this.injectedProps;
     const { catalog, loading: loadingCatalog, activeLanguage } = languageStore;
     return (
       <I18nProvider language={activeLanguage.lang} catalogs={{ [activeLanguage.lang]: catalog }}>
