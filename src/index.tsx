@@ -1,21 +1,29 @@
+import 'typeface-ibm-plex-sans';
+
 import React from 'react';
 import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-import App from './App';
+import configureStore, { history } from './configStore';
+import Main from './main';
 
+// import { ConnectedRouter } from 'connected-react-router';
 const root = document.getElementById('root');
 const basePath = process.env.BASE_PATH;
 
+const initialState = window.initialReduxState;
+const store = configureStore(initialState);
+
 const load = () =>
   render(
-    <AppContainer>
-      <BrowserRouter basename={basePath}>
-        <App />
-      </BrowserRouter>
-    </AppContainer>,
-    root,
+    <Provider store={store}>
+      <Main history={history} />
+    </Provider>,
+    //   <BrowserRouter basename={basePath}>
+    //     <App />
+    //   </BrowserRouter>
+    // </AppContainer>,
+    root
   );
 
 // This is needed for Hot Module Replacement
@@ -26,3 +34,5 @@ if (module.hot) {
 }
 
 load();
+
+// store.subscribe(load);
