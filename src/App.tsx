@@ -5,8 +5,8 @@ import { IUIStore } from 'models/uiStore';
 import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
-
 import { Layout } from './layout/Layout/Layout';
+
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
@@ -18,6 +18,9 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1em;
     color: #404040;
     font-family: Roboto, sans-serif;
+    test: {
+    padding: 20;
+    }
   }
 `;
 

@@ -4,12 +4,6 @@
       "@babel/preset-env",
       {
         "modules": false,
-        "targets": {
-          "chrome": "65",
-          "edge": "16",
-          "firefox": "59",
-          "ie": "11"
-        },
         "useBuiltIns": "usage"
       }
     ],

@@ -1,9 +1,10 @@
-import { withI18n, withI18nProps } from '@lingui/react';
 import Logo from 'images/Logo.png';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { routes } from 'src/routes/routes';
 import styled from 'styled-components/macro';
+
+import { withI18n, withI18nProps } from '@lingui/react';
 
 import ConnectedLanguageSelector from '../../form/Language/ConnectedLanguageSelector';
 
@@ -48,7 +49,7 @@ class Header extends React.Component<HeaderProps, any> {
         <div className="logo-container">
           <LogoImage src={Logo} />
         </div>
-        <p>{i18n.t`What`}</p>
+        {/* <p>{i18n.t`What`}</p> */}
         <MainMenu>
           {routes.filter(i => i.menu === true).map(r => (
             <Link key={r.name} to={r.route.path}>
