@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-08-01 08:27+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/pages/MultiLanguage/MultiLanguage.tsx:14
+msgid "Add a message"
+msgstr "Add a message"
+
+#: src/App.tsx:52
+msgid "App count"
+msgstr "App count"
+
+#: src/components/TestComponent.tsx:14
+msgid "Decrement"
+msgstr "Decrement"
+
+#: src/App.tsx:49
+#: src/components/TestComponent.tsx:11
+msgid "Increment"
+msgstr "Increment"
+
+#: src/form/Language/LanguageSelector.tsx:30
+msgid "Language"
+msgstr "Language"
+
+#: src/App.tsx:55
+msgid "Template literal string"
+msgstr "Template literal string"
+
+#: src/pages/Home/Home.tsx:7
+msgid "This is the home page"
+msgstr "This is the home page"
+
+#: src/App.tsx:56
+msgid "lit string"
+msgstr "lit string"
+
+#: src/App.tsx:58
+msgid "{count, plural, zero {There are no books} one {There's one book} other {There are # books}}"
+msgstr "{count, plural, zero {There are no books} one {There's one book} other {There are # books}}"

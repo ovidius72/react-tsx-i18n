@@ -1,32 +1,58 @@
-import { Provider } from 'mobx-react';
-import React from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { BrowserRouter } from 'react-router-dom';
+// import { AppContainer } from 'react-hot-loader'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
-import App from './App';
-import stores from './store';
+import { App } from './App';
+// import stores from './store';
+import { i18n } from '@lingui/core';
+import { I18nProvider } from '@lingui/react';
+import { defaultLocale, dynamicActivate } from './i18n';
+import ReactDOM from 'react-dom';
+import { TestComponent } from './components/TestComponent';
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 const root = document.getElementById('root');
-const basePath = process.env.BASE_PATH;
+const basePath = '/';
 
-const load = () =>
-  render(
-    <AppContainer>
+const I18nApp = () => {
+  useEffect(() => {
+    console.log('loading dynamic catalogs');
+    // load catalogs dynamically.
+    dynamicActivate(defaultLocale);
+  }, []);
+
+  return (
+    <I18nProvider i18n={i18n}>
       <BrowserRouter basename={basePath}>
-        <Provider {...stores}>
-          <App />
-        </Provider>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="test" element={<TestComponent />} />
+        </Routes>
       </BrowserRouter>
-    </AppContainer>,
-    root,
+    </I18nProvider>
   );
+};
 
-// This is needed for Hot Module Replacement
-if (module.hot) {
-  module.hot.accept(() => {
-    load();
-  });
-}
+//@ts-ignore
+ReactDOM.unstable_createRoot(root).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <I18nApp />
+    </Provider>
+  </React.StrictMode>,
+);
 
-load();
+// COMMENTED OUT: Testin react refresh webpack plugin.
+// TODO: Remove once testing in completed.
+//
+// // This is needed for Hot Module Replacement
+// if (module.hot != null) {
+//   console.log('module', module);
+//   module.hot.accept(() => {
+//     console.log('module accepted', module);
+//     // load()
+//   });
+// }
+
+// load()

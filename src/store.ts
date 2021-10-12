@@ -1,6 +1,12 @@
-import makeInspectable from 'mobx-devtools-mst';
-import mainStore from 'models/rootStore';
+import { configureStore } from '@reduxjs/toolkit';
+import { languageSlice } from './features/language/language.slice';
 
-// Makes the store inspectable by the mobx devtools
-const store = makeInspectable(mainStore);
-export default store;
+export const store = configureStore({
+  reducer: {
+    language: languageSlice.reducer,
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

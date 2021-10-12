@@ -18,8 +18,8 @@ module.exports = (env, {mode}) => {
       plugins: [
         new CleanWebpackPlugin(pathsToClean, cleanConfig),
         new MiniCssExtractPlugin({
-          filename: '[name].css',
-          chunkFilename: '[id].css',
+          filename: '[chunkFilename].css',
+          chunkFilename: '[chunkFilename]-[id].css',
         }),
       ],
       stats: 'errors-only',

@@ -1,0 +1,21 @@
+{
+  "locales": [
+    "en",
+    "it"
+  ],
+  "sourceLocale": "en",
+  "compileNamespace": "ts",
+  "catalogs": [
+    {
+      "path": "./locales/{locale}/messages",
+      "include": [
+        "src/**/*"
+      ],
+      "exclude": [
+        "src/lingui/**/*",
+        "src/locales/**/*"
+      ]
+    }
+  ],
+  "format": "po"
+}

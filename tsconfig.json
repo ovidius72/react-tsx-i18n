@@ -20,7 +20,7 @@
       "images/*": ["src/images/*"],
       "src/*": ["src/*"],
       "utils/*": ["src/utils/*"],
-      "components/*": ["src/components/*"],
+      "components/*": ["src/components/*"]
     }
   },
   "exclude": ["node_modules", "build", "locale", "config"],

@@ -1,73 +1,90 @@
-import { I18nProvider } from '@lingui/react';
-import { inject, observer } from 'mobx-react';
-import { ILanguageStore } from 'models/languageStore';
-import { IUIStore } from 'models/uiStore';
-import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
-import { Layout } from './layout/Layout/Layout';
-
+// import { I18nProvider } from '@lingui/react';
+// import { ILanguageStore } from 'models/languageStore';
+import { i18n } from '@lingui/core';
+import { Plural, t, Trans } from '@lingui/macro';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+// import { RouteComponentProps, withRouter } from 'react-router';
+import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components/macro';
+import { layout, LayoutProps, space, SpaceProps } from 'styled-system';
+import { useAppDispatch } from './app/hooks';
+import { TestComponent } from './components/TestComponent';
+import { languageActions } from './features/language/language.slice';
+import { dynamicActivate, locales } from './i18n';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
   body {
-    font-size: 17px;
+    font-size: 1em;
     margin: 0;
     background-color: white;
     padding: 0;
-    line-height: 1em;
     color: #404040;
     font-family: Roboto, sans-serif;
-    test: {
-    padding: 20;
-    }
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid #e3e3e3;
+  }
+  * {
+  box-sizing: border-box;
   }
 `;
 
-interface IAppProps {
-  uiStore: IUIStore;
-  languageStore: ILanguageStore;
-}
+const Box = styled.div<LayoutProps & SpaceProps>`
+  ${layout};
+  ${space};
+  box-sizing: border-box;
+  background-color: green;
+  padding: 1em;
+`;
+i18n.activate('en');
+export const App = () => {
+  console.log('in app');
+  const [count, setCount] = useState(0);
+  const dispatch = useAppDispatch();
 
-type Props = IAppProps & RouteComponentProps;
+  const handleLanguageChange = async (lang: string) => {
+    dispatch(languageActions.setCatalog(lang));
+    await dynamicActivate(lang);
+  };
 
-@inject('uiStore', 'languageStore')
-@observer
-class App extends React.Component<any, {}> {
-  componentDidMount() {
-    this.injectedProps.uiStore!.setMessagesRead();
-  }
-
-  get injectedProps():Props {
-    return this.props as Props;
-  }
-
-  componentWillReceiveProps(nextProps: Props) {
-    const { uiStore, location: { pathname } } = this.injectedProps;
-
-    const { pathname: oldPathname } = nextProps.location;
-    // when location changes app messages are set to visited so that they will not be showed on the next page.
-    uiStore.setVisitedMessagesRead();
-  }
-
-  render() {
-    const { uiStore, languageStore } = this.injectedProps;
-    const { catalog, loading: loadingCatalog, activeLanguage } = languageStore;
-    return (
-      <I18nProvider language={activeLanguage.lang} catalogs={{ [activeLanguage.lang]: catalog }}>
-        {loadingCatalog ? (
-          <div>Loading...</div>
-        ) : (
-          <ThemeProvider theme={{ color: '#808080' }}>
-            <React.Fragment>
-              <Layout />
-              <GlobalStyle />
-            </React.Fragment>
-          </ThemeProvider>
-        )}
-      </I18nProvider>
-    );
-  }
-}
-
-export default withRouter(App);
+  return (
+    <div>
+      <h2 style={{ backgroundColor: 'violet' }}>My React App</h2>
+      <Link to="test">Test</Link>
+      <div className="lang-container">
+        {Object.values(locales).map((locale, index) => (
+          <button
+            type="button"
+            onClick={async () =>
+              await handleLanguageChange(Object.keys(locales)[index])
+            }
+            key={locale}
+          >
+            {locale}
+          </button>
+        ))}
+      </div>
+      <Box m={1} px={10} width={[1, 1 / 4, 1 / 2, 1]}>
+        I am a box
+      </Box>
+      <button onClick={() => setCount(c => c + 1)}>
+        <Trans>Increment</Trans>
+      </button>
+      <div>
+        <Trans>App count</Trans> {count}
+      </div>
+      <TestComponent />
+      <p>{t`Template literal string`}</p>
+      <p>{t`lit string`}</p>
+      <h2>Plural</h2>
+      <Plural
+        value={count}
+        zero={'There are no books'}
+        one={"There's one book"}
+        other={'There are # books'}
+      />
+      <GlobalStyle />
+    </div>
+  );
+};

@@ -1,9 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+// const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const TSLintPlugin = require('tslint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const envLoader = require('./envReader');
 
 const ROOT = path.join(__dirname, '..');
@@ -24,6 +24,7 @@ const cleanConfig = {
 
 const config = (mode, cb) => {
   const envsObject = envLoader.asObject(true, mode);
+  const isDev = mode === 'developlemt';
   const { DEV_PORT, DEV_HOST, APP_NAME, APP_VERSION, BASE_PATH } = envsObject;
 
   const envs = Object.keys(envsObject).reduce((acc, curr) => {
@@ -53,24 +54,22 @@ const config = (mode, cb) => {
         publicPath: BASE_PATH,
         filename: 'bundle.js',
         chunkFilename: '[name].js',
-        globalObject: 'this'
+        clean: true
+        // globalObject: 'this'
       },
       module: {
         rules: [
           {
-            test: /\.worker\.(js|ts|tsx)$/,
-            exclude: /node_modules/,
-            use: ['worker-loader']
-          },
-          {
-            test: /\.workerize\.(js|ts|tsx)$/,
-            exclude: /node_modules/,
-            use: 'workerize-loader'
-          },
-          {
             test: /\.(js|jsx|ts|tsx)$/,
             exclude: /node_modules/,
-            use: 'babel-loader'
+            use: [{
+              loader: require.resolve('babel-loader'),
+              options: {
+                plugins: [
+                 isDev && require.resolve('react-refresh/babel') 
+                ].filter(Boolean)
+              }
+            }]
           },
           {
             test: /\.js$/,
@@ -79,11 +78,11 @@ const config = (mode, cb) => {
             exclude: [path.join(process.cwd(), 'node_modules'), /build/, /locale/, /typings/, /__tests__/, /coverage/]
           },
           {
-            test: /\.(png|jpg|jpeg|gif|svg)$/,
+            test: /\.(png|jpg|jpeg|gif|svg|mp3)$/,
             use: {
               loader: 'file-loader',
               options: {
-                name: './images/[name]-[hash].[ext]'
+                name: './images/[name]-[fullhash].[ext]'
               }
             }
           },
@@ -135,7 +134,7 @@ const config = (mode, cb) => {
             test: /\.(ts|tsx)$/,
             enforce: 'pre',
             exclude: /node_modules/,
-            loader: 'tslint-loader'
+            loader: 'eslint-loader'
           }
         ]
       },
@@ -152,20 +151,22 @@ const config = (mode, cb) => {
       plugins: [
         new webpack.DefinePlugin(envs),
         new ForkTsCheckerWebpackPlugin({
-          checkSyntacticErrors: true
+          eslint: {
+            files: ['./src/**/*.ts', './src/**/*.tsx']
+          }
         }),
-        new TSLintPlugin({
+        new ESLintPlugin({
           files: ['./src/**/*.ts', './src/**/*.tsx']
         }),
-        new FaviconsWebpackPlugin({
-          logo: path.join(paths.public, 'favicon.png'),
-          prefix: 'favicons/[name]-[hash]',
-          emitStats: true,
-          persistentCache: false,
-          inject: true,
-          background: '#fff',
-          title: `${APP_NAME}`
-        }),
+        // new FaviconsWebpackPlugin({
+        //   logo: path.join(paths.public, 'favicon.png'),
+        //   prefix: 'favicons/[name]-[fullhash]',
+        //   emitStats: true,
+        //   persistentCache: false,
+        //   inject: true,
+        //   background: '#fff',
+        //   title: `${APP_NAME}`
+        // }),
         new HtmlWebPackPlugin({
           title: APP_NAME,
           hash: true,
@@ -173,41 +174,41 @@ const config = (mode, cb) => {
           template: path.join(paths.public, 'index.html')
         })
       ],
-      devtool: 'source-map',
-      optimization: {
-        splitChunks: {
-          cacheGroups: {
-            default: {
-              chunks: 'all',
-              minChunks: 2,
-              priority: -20,
-              reuseExistingChunk: true,
-              name: 'default'
-            },
-            vendors: false,
-            vendor: {
-              chunks: 'all',
-              test: /[\\/]node_modules[\\/]/,
-              enforce: true,
-              name: 'vendor'
-            },
-            // common chunk
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'all',
-              priority: 10,
-              reuseExistingChunk: true,
-              enforce: true
-            },
-            styles: {
-              minSize: 0, // Ignore minSize for CSS files, to force them in new chunks
-              test: /\.css$/,
-              name: 'style'
-            }
-          }
-        }
-      }
+      // devtool: 'source-map',
+      // optimization: {
+      //   splitChunks: {
+      //     cacheGroups: {
+      //       default: {
+      //         chunks: 'all',
+      //         minChunks: 2,
+      //         priority: -20,
+      //         reuseExistingChunk: true,
+      //         name: 'default'
+      //       },
+      //       // vendors: false,
+      //       // vendor: {
+      //       //   chunks: 'all',
+      //       //   test: /[\\/]node_modules[\\/]/,
+      //       //   enforce: true,
+      //       //   name: 'vendor'
+      //       // },
+      //       // common chunk
+      //       // common: {
+      //       //   name: 'common',
+      //       //   minChunks: 2,
+      //       //   chunks: 'all',
+      //       //   priority: 10,
+      //       //   reuseExistingChunk: true,
+      //       //   enforce: true
+      //       // },
+      //       styles: {
+      //         minSize: 0, // Ignore minSize for CSS files, to force them in new chunks
+      //         test: /\.css$/,
+      //         name: 'style'
+      //       }
+      //     }
+      //   }
+      // }
     }
   );
 };

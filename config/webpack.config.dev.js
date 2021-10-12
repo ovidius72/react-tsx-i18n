@@ -1,6 +1,6 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const { merge } = require('webpack-merge');
+const TerserPlugin = require('terser-webpack-plugin');
 const getConfig = require('./webpack.config.common');
 
 module.exports = (env, { mode }) => {
@@ -18,8 +18,11 @@ module.exports = (env, { mode }) => {
       devtool: 'inline-cheap-module-source-map',
       optimization: {
         minimizer: [
-          new UglifyJSPlugin({
-            test: /\.js($|\?)/i,
+          new TerserPlugin({
+            parallel: true,
+            terserOptions: {
+              test: /\.js(\?.*)?$/i,
+            }
           }),
         ],
       },
