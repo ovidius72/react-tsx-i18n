@@ -28,6 +28,11 @@
       "npm run lint"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ovidius72/react-tsx-i18n.git"
