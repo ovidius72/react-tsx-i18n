@@ -1,19 +1,23 @@
 // import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 
-import { App } from './App';
+// import { App } from './App';
 // import stores from './store';
 import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import { defaultLocale, dynamicActivate } from './i18n';
 import ReactDOM from 'react-dom';
-import { TestComponent } from './components/TestComponent';
+// import { TestComponent } from './components/TestComponent';
 import { store } from './store';
 import { Provider } from 'react-redux';
 
 const root = document.getElementById('root');
 const basePath = '/';
+//@ts-ignore
+const App = lazy(() => import('./App'));
+//@ts-ignore
+const TestComponent = lazy(() => import('./components/TestComponent'));
 
 const I18nApp = () => {
   useEffect(() => {
@@ -38,7 +42,9 @@ const I18nApp = () => {
 ReactDOM.unstable_createRoot(root).render(
   <React.StrictMode>
     <Provider store={store}>
-      <I18nApp />
+      <Suspense fallback={<div>Loading...</div>}>
+        <I18nApp />
+      </Suspense>
     </Provider>
   </React.StrictMode>,
 );

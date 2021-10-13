@@ -52,8 +52,8 @@ const config = (mode, cb) => {
       output: {
         path: paths.build,
         publicPath: BASE_PATH,
-        filename: 'bundle.js',
-        chunkFilename: '[name].js',
+        filename: 'bundle-[name]-[fullhash].js',
+        chunkFilename: 'chunk-[name]-[chunkhash].js',
         clean: true
         // globalObject: 'this'
       },
@@ -98,19 +98,19 @@ const config = (mode, cb) => {
               }
             ]
           },
-          {
-            test: /\.(scss|sass)$/,
-            use: [
-              { loader: 'style-loader' },
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 1
-                }
-              },
-              { loader: 'sass-loader' }
-            ]
-          },
+          // {
+          //   test: /\.(scss|sass)$/,
+          //   use: [
+          //     { loader: 'style-loader' },
+          //     {
+          //       loader: 'css-loader',
+          //       options: {
+          //         importLoaders: 1
+          //       }
+          //     },
+          //     { loader: 'sass-loader' }
+          //   ]
+          // },
           {
             test: /\.css$/,
             use: [
@@ -174,41 +174,40 @@ const config = (mode, cb) => {
           template: path.join(paths.public, 'index.html')
         })
       ],
-      // devtool: 'source-map',
-      // optimization: {
-      //   splitChunks: {
-      //     cacheGroups: {
-      //       default: {
-      //         chunks: 'all',
-      //         minChunks: 2,
-      //         priority: -20,
-      //         reuseExistingChunk: true,
-      //         name: 'default'
-      //       },
-      //       // vendors: false,
-      //       // vendor: {
-      //       //   chunks: 'all',
-      //       //   test: /[\\/]node_modules[\\/]/,
-      //       //   enforce: true,
-      //       //   name: 'vendor'
-      //       // },
-      //       // common chunk
-      //       // common: {
-      //       //   name: 'common',
-      //       //   minChunks: 2,
-      //       //   chunks: 'all',
-      //       //   priority: 10,
-      //       //   reuseExistingChunk: true,
-      //       //   enforce: true
-      //       // },
-      //       styles: {
-      //         minSize: 0, // Ignore minSize for CSS files, to force them in new chunks
-      //         test: /\.css$/,
-      //         name: 'style'
-      //       }
-      //     }
-      //   }
-      // }
+      optimization: {
+        splitChunks: {
+          cacheGroups: {
+            default: {
+              chunks: 'all',
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true,
+              name: 'default'
+            },
+            vendors: false,
+            vendor: {
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]/,
+              enforce: true,
+              name: 'vendor'
+            },
+            // common chunk
+            common: {
+              name: 'common',
+              minChunks: 2,
+              chunks: 'all',
+              priority: 10,
+              reuseExistingChunk: true,
+              enforce: true
+            },
+            styles: {
+              minSize: 0, // Ignore minSize for CSS files, to force them in new chunks
+              test: /\.css$/,
+              name: 'style'
+            }
+          }
+        }
+      }
     }
   );
 };

@@ -1,11 +1,10 @@
-const merge = require('webpack-merge');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const getConfig = require('./webpack.config.common');
 
 module.exports = (env, {mode}) => {
-  return getConfig(mode, ({pathsToClean, cleanConfig}, baseConfig) => {
+  return getConfig(mode, (_, baseConfig) => {
     return merge(baseConfig, {
       module: {
         rules: [
@@ -16,21 +15,17 @@ module.exports = (env, {mode}) => {
         ],
       },
       plugins: [
-        new CleanWebpackPlugin(pathsToClean, cleanConfig),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
           filename: '[chunkFilename].css',
           chunkFilename: '[chunkFilename]-[id].css',
         }),
       ],
       stats: 'errors-only',
-      devtool: 'none',
+      devtool: 'source-map',
       optimization: {
         runtimeChunk: 'single',
-        minimizer: [
-          new UglifyJSPlugin({
-            test: /\.(js|jsx)($|\?)/i,
-          }),
-        ],
+        minimize: true,
       },
     });
   });

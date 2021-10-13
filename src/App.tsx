@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components/macro';
 import { layout, LayoutProps, space, SpaceProps } from 'styled-system';
 import { useAppDispatch } from './app/hooks';
-import { TestComponent } from './components/TestComponent';
 import { languageActions } from './features/language/language.slice';
 import { dynamicActivate, locales } from './i18n';
 
@@ -38,8 +37,8 @@ const Box = styled.div<LayoutProps & SpaceProps>`
   padding: 1em;
 `;
 i18n.activate('en');
+
 export const App = () => {
-  console.log('in app');
   const [count, setCount] = useState(0);
   const dispatch = useAppDispatch();
 
@@ -74,7 +73,6 @@ export const App = () => {
       <div>
         <Trans>App count</Trans> {count}
       </div>
-      <TestComponent />
       <p>{t`Template literal string`}</p>
       <p>{t`lit string`}</p>
       <h2>Plural</h2>
@@ -88,3 +86,4 @@ export const App = () => {
     </div>
   );
 };
+export default App;

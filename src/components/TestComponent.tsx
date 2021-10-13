@@ -24,4 +24,4 @@ const TestComponent: VFC<TestComponentProps> = () => {
   );
 };
 
-export { TestComponent };
+export default TestComponent;

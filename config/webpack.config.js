@@ -16,44 +16,54 @@ module.exports = (env, { mode }) => {
           rules: [
             {
               test: /\.css$/,
-              use: ['style-loader', 'css-loader']
-            }
-          ]
+              use: ['style-loader', 'css-loader'],
+            },
+          ],
         },
-        devtool: 'source-map',
+        // devtool: 'source-map',
+        devtool: 'eval-cheap-source-map',
+        stats: {
+          ids: false,
+          assets: false,
+          modules: false,
+          assetsSort: '!size',
+          performance: false,
+          builtAt: false,
+          moduleAssets: false,
+          assetsSpace: 5,
+          nestedModules: false,
+          cachedModules: false,
+          runtimeModules: false,
+          dependentModules: false,
+          orphanModules: false,
+          entrypoints: false,
+          reasons: false,
+          hash: false,
+          chunkGroupAuxiliary: false,
+          chunkGroupChildren: false,
+          logging: 'error',
+          cachedAssets: false,
+          children: false,
+          chunkGroups: false,
+          chunkModules: false,
+          colors: true,
+        },
         devServer: {
           port: DEV_PORT,
           host: DEV_HOST,
           open: true,
           // liveReload: true,
           hot: true,
-          headers: () => ({'x-custom': ['key1=value', 'key2=value2']}),
+          headers: () => ({ 'x-webpack-template': 'react-tsx-i18n' }),
           historyApiFallback: true,
           static: BASE_PATH,
           client: {
-            // progress: false,
+            progress: false,
             overlay: {
               warnings: true,
               errors: true,
-            }
+            },
           },
-          // quiet: false,
-          // stats: {
-          //   colors: true,
-          //   hash: false,
-          //   version: false,
-          //   timings: false,
-          //   assets: false,
-          //   chunks: false,
-          //   modules: false,
-          //   reasons: false,
-          //   children: false,
-          //   source: false,
-          //   errorDetails: true,
-          //   publicPath: false
-          // },
-          // noInfo: true,
-
           //* UNCOMMENT TO ENABLE PROXY *//
           // proxy: {
           //   '/api/*': {
@@ -75,20 +85,14 @@ module.exports = (env, { mode }) => {
           new webpack.ProgressPlugin({ percentBy: 'entries' }),
 
           new WebpackBar({
-            color: "orange",
+            color: 'cyan',
             name: `${APP_NAME} v${APP_VERSION}`,
             compiledIn: false,
           }),
-          // new WebpackFriendlyErrors({
-          //   compilationSuccessInfo: {
-          //     messages: [`${APP_NAME} v${APP_VERSION} is running at http://${DEV_HOST}:${DEV_PORT}`],
-          //   },
-          //   clearConsole: true,
-          // }),
           new WebpaclCleanTerminalPlugin(),
-        ]
+        ],
       });
-    }
+    },
   );
   return newConfig;
 };

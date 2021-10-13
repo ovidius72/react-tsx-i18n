@@ -24,14 +24,14 @@ module.exports = (_, argv) => {
       path: paths.build,
       filename: 'bundle.js',
       chunkFilename: '[name].js',
-      globalObject: 'this'
+      globalObject: 'this',
     },
     module: {
       rules: [
         {
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          use: ['babel-loader']
+          use: ['babel-loader'],
         },
         {
           test: /\.js$/,
@@ -43,17 +43,17 @@ module.exports = (_, argv) => {
             /locale/,
             /typings/,
             /__tests__/,
-            /coverage/
-          ]
+            /coverage/,
+          ],
         },
         {
           test: /\.(png|jpg|jpeg|gif|svg|mp3)$/,
           use: {
             loader: 'file-loader',
             options: {
-              name: './images/[name]-[fullhash].[ext]'
-            }
-          }
+              name: './images/[name]-[fullhash].[ext]',
+            },
+          },
         },
         {
           test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
@@ -62,10 +62,10 @@ module.exports = (_, argv) => {
               loader: 'file-loader',
               options: {
                 name: '[name].[ext]',
-                outputPath: 'fonts/'
-              }
-            }
-          ]
+                outputPath: 'fonts/',
+              },
+            },
+          ],
         },
         {
           test: /\.(scss|sass)$/,
@@ -74,11 +74,11 @@ module.exports = (_, argv) => {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1
-              }
+                importLoaders: 1,
+              },
             },
-            { loader: 'sass-loader' }
-          ]
+            { loader: 'sass-loader' },
+          ],
         },
         {
           test: /\.css$/,
@@ -87,30 +87,46 @@ module.exports = (_, argv) => {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1
-              }
+                importLoaders: 1,
+              },
             },
-            { loader: 'postcss-loader' }
-          ]
+            { loader: 'postcss-loader' },
+          ],
         },
         {
           test: /messages*\.(json)$/,
           use: ['json-loader'],
           include: paths.locale,
-          type: 'javascript/auto'
+          type: 'javascript/auto',
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader']
-        }
+          use: ['style-loader', 'css-loader'],
+        },
         // {
         //   test: /\.(ts|tsx)$/,
         //   enforce: 'pre',
         //   exclude: /node_modules/,
         //   loader: 'eslint-loader'
         // }
-      ]
+      ],
     },
+    // stats: {
+    //   assets: false,
+    //   assetsSort: '!size',
+    //   builtAt: false,
+    //   moduleAssets: false,
+    //   assetsSpace: 5,
+    //   nestedModules: false,
+    //   chacheModules: false,
+    //   runtimeModule: false,
+    //   dependentModule: false,
+    //   cacheAssets: false,
+    //   children: false,
+    //   chunkGroups: false,
+    //   chunkModules: false,
+    //   colors: true,
+    // },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
@@ -118,8 +134,8 @@ module.exports = (_, argv) => {
         images: path.join(paths.src, 'images'),
         utils: path.join(paths.src, 'utils'),
         components: path.join(paths.src, 'components'),
-        src: paths.src
-      }
+        src: paths.src,
+      },
     },
     plugins: [
       new webpack.DefinePlugin(envs),
@@ -129,7 +145,7 @@ module.exports = (_, argv) => {
       //   }
       // }),
       new ESLintPlugin({
-        files: ['./src/**/*.ts', './src/**/*.tsx']
+        files: ['./src/**/*.ts', './src/**/*.tsx'],
       }),
       // new FaviconsWebpackPlugin({
       //   logo: path.join(paths.public, 'favicon.png'),
@@ -141,7 +157,7 @@ module.exports = (_, argv) => {
       //   title: `${APP_NAME}`
       // }),
       new webpack.HotModuleReplacementPlugin({
-        log: false
+        log: false,
       }),
 
       // new WebpackBar({
@@ -160,33 +176,19 @@ module.exports = (_, argv) => {
         title: APP_NAME,
         // hash: true,
         filename: path.join(paths.build, 'index.html'),
-        template: path.join(paths.public, 'index.html')
-      })
+        template: path.join(paths.public, 'index.html'),
+      }),
     ],
-    devtool: 'source-map',
+    devtool: 'eval-cheap-source-map',
     devServer: {
+      stats: 'errors-warnings',
+      'hide-modules': true,
       // overlay: true,
       // quiet: false,
-      // stats: {
-      //   colors: true,
-      //   hash: false,
-      //   version: false,
-      //   timings: false,
-      //   assets: false,
-      //   chunks: false,
-      //   modules: false,
-      //   reasons: false,
-      //   children: false,
-      //   source: false,
-      //   errors: true,
-      //   errorDetails: true,
-      //   warnings: true,
-      //   publicPath: false,
-      // },
       // noInfo: true,
       contentBase: BASE_PATH,
       port: 3333,
-      open: true
+      open: true,
       // hot: true,
       // historyApiFallback: true,
       // progress: false,
@@ -203,7 +205,7 @@ module.exports = (_, argv) => {
       //     pathRewrite: { '^/api': '' },
       //   },
       // },
-    }
+    },
     // devtool: 'source-map',
     // optimization: {
     //   splitChunks: {
