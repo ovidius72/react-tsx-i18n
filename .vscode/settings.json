@@ -6,10 +6,7 @@
     "build": true,
     "coverage": true
   },
-  "spellright.language": [
-    "en",
-    "it"
-  ],
+  "spellright.language": ["en", "it"],
   "spellright.documentTypes": [
     "markdown",
     "latex",
