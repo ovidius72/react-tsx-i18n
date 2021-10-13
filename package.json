@@ -22,6 +22,12 @@
     "compile": "cross-env NODE_ENV=lingui lingui compile",
     "compile:strict": "cross-env NODE_ENV=lingui lingui compile --strict"
   },
+  "lint-staged": {
+    "src/*.{ts,tsx,js,jsx}": [
+      "npm run prettier:fix",
+      "npm run lint"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ovidius72/react-tsx-i18n.git"
