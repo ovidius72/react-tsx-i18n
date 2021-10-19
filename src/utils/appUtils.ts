@@ -1,6 +1,4 @@
-import cuid from 'cuid';
-
-export const uuid = () => cuid();
+export const uuid = () => (1000 - 1 + 1) * Math.random();
 
 export const objectToArray = async (keyedObject: {
   [key: string]: any;

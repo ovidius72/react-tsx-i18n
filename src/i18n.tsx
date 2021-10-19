@@ -5,7 +5,20 @@ export const locales = {
   en: 'English',
   it: 'Italian',
 };
-export const defaultLocale = 'en';
+export const LANGUAGE_LOCAL_STORAGE_KEY = '__react_lingui_language__';
+
+export const getStoredLanguage = () =>
+  localStorage
+    ? localStorage.getItem(LANGUAGE_LOCAL_STORAGE_KEY) || 'en'
+    : 'en';
+
+export const setStoredLanguage = (lang: string) => {
+  if (localStorage) {
+    localStorage.setItem(LANGUAGE_LOCAL_STORAGE_KEY, lang);
+  }
+};
+
+export const defaultLocale = getStoredLanguage();
 
 i18n.loadLocaleData({
   en: { plurals: en },

@@ -13,18 +13,18 @@ const paths = {
   public: path.join(ROOT, 'public'),
   build: path.join(ROOT, 'build'),
   entry: path.join(ROOT, 'src', 'index.tsx'),
-  locale: path.join(ROOT, 'locale')
+  locale: path.join(ROOT, 'locale'),
 };
 
 const pathsToClean = ['build'];
 const cleanConfig = {
   root: paths.root,
-  verbose: true
+  verbose: true,
 };
 
 const config = (mode, cb) => {
   const envsObject = envLoader.asObject(true, mode);
-  const isDev = mode === 'developlemt';
+  const isDev = mode === 'development';
   const { DEV_PORT, DEV_HOST, APP_NAME, APP_VERSION, BASE_PATH } = envsObject;
 
   const envs = Object.keys(envsObject).reduce((acc, curr) => {
@@ -43,7 +43,7 @@ const config = (mode, cb) => {
       BASE_PATH,
       pathsToClean,
       cleanConfig,
-      envs
+      envs,
     },
     {
       mode,
@@ -54,7 +54,7 @@ const config = (mode, cb) => {
         publicPath: BASE_PATH,
         filename: 'bundle-[name]-[fullhash].js',
         chunkFilename: 'chunk-[name]-[chunkhash].js',
-        clean: true
+        clean: true,
         // globalObject: 'this'
       },
       module: {
@@ -62,29 +62,38 @@ const config = (mode, cb) => {
           {
             test: /\.(js|jsx|ts|tsx)$/,
             exclude: /node_modules/,
-            use: [{
-              loader: require.resolve('babel-loader'),
-              options: {
-                plugins: [
-                 isDev && require.resolve('react-refresh/babel') 
-                ].filter(Boolean)
-              }
-            }]
+            use: [
+              {
+                loader: require.resolve('babel-loader'),
+                options: {
+                  plugins: [
+                    isDev && require.resolve('react-refresh/babel'),
+                  ].filter(Boolean),
+                },
+              },
+            ],
           },
           {
             test: /\.js$/,
             use: 'source-map-loader',
             enforce: 'pre',
-            exclude: [path.join(process.cwd(), 'node_modules'), /build/, /locale/, /typings/, /__tests__/, /coverage/]
+            exclude: [
+              path.join(process.cwd(), 'node_modules'),
+              /build/,
+              /locale/,
+              /typings/,
+              /__tests__/,
+              /coverage/,
+            ],
           },
           {
             test: /\.(png|jpg|jpeg|gif|svg|mp3)$/,
             use: {
               loader: 'file-loader',
               options: {
-                name: './images/[name]-[fullhash].[ext]'
-              }
-            }
+                name: './images/[name]-[fullhash].[ext]',
+              },
+            },
           },
           {
             test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
@@ -93,10 +102,10 @@ const config = (mode, cb) => {
                 loader: 'file-loader',
                 options: {
                   name: '[name].[ext]',
-                  outputPath: 'fonts/'
-                }
-              }
-            ]
+                  outputPath: 'fonts/',
+                },
+              },
+            ],
           },
           // {
           //   test: /\.(scss|sass)$/,
@@ -118,25 +127,19 @@ const config = (mode, cb) => {
               {
                 loader: 'css-loader',
                 options: {
-                  importLoaders: 1
-                }
+                  importLoaders: 1,
+                },
               },
-              { loader: 'postcss-loader' }
-            ]
+              { loader: 'postcss-loader' },
+            ],
           },
           {
             test: /messages*\.(json)$/,
             use: ['json-loader'],
             include: paths.locale,
-            type: 'javascript/auto'
+            type: 'javascript/auto',
           },
-          {
-            test: /\.(ts|tsx)$/,
-            enforce: 'pre',
-            exclude: /node_modules/,
-            loader: 'eslint-loader'
-          }
-        ]
+        ],
       },
       resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -145,18 +148,18 @@ const config = (mode, cb) => {
           images: path.join(paths.src, 'images'),
           utils: path.join(paths.src, 'utils'),
           components: path.join(paths.src, 'components'),
-          src: paths.src
-        }
+          src: paths.src,
+        },
       },
       plugins: [
         new webpack.DefinePlugin(envs),
         new ForkTsCheckerWebpackPlugin({
           eslint: {
-            files: ['./src/**/*.ts', './src/**/*.tsx']
-          }
+            files: ['./src/**/*.ts', './src/**/*.tsx'],
+          },
         }),
         new ESLintPlugin({
-          files: ['./src/**/*.ts', './src/**/*.tsx']
+          files: ['./src/**/*.ts', './src/**/*.tsx'],
         }),
         // new FaviconsWebpackPlugin({
         //   logo: path.join(paths.public, 'favicon.png'),
@@ -171,8 +174,8 @@ const config = (mode, cb) => {
           title: APP_NAME,
           hash: true,
           filename: path.join(paths.build, 'index.html'),
-          template: path.join(paths.public, 'index.html')
-        })
+          template: path.join(paths.public, 'index.html'),
+        }),
       ],
       optimization: {
         splitChunks: {
@@ -182,14 +185,14 @@ const config = (mode, cb) => {
               minChunks: 2,
               priority: -20,
               reuseExistingChunk: true,
-              name: 'default'
+              name: 'default',
             },
             vendors: false,
             vendor: {
               chunks: 'all',
               test: /[\\/]node_modules[\\/]/,
               enforce: true,
-              name: 'vendor'
+              name: 'vendor',
             },
             // common chunk
             common: {
@@ -198,17 +201,17 @@ const config = (mode, cb) => {
               chunks: 'all',
               priority: 10,
               reuseExistingChunk: true,
-              enforce: true
+              enforce: true,
             },
             styles: {
               minSize: 0, // Ignore minSize for CSS files, to force them in new chunks
               test: /\.css$/,
-              name: 'style'
-            }
-          }
-        }
-      }
-    }
+              name: 'style',
+            },
+          },
+        },
+      },
+    },
   );
 };
 

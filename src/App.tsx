@@ -2,15 +2,16 @@
 // import { ILanguageStore } from 'models/languageStore';
 import { i18n } from '@lingui/core';
 import { Plural, t, Trans } from '@lingui/macro';
+import { useLingui } from '@lingui/react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // import { RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components/macro';
 import { layout, LayoutProps, space, SpaceProps } from 'styled-system';
-import { useAppDispatch } from './app/hooks';
 import { languageActions } from './features/language/language.slice';
-import { dynamicActivate, locales } from './i18n';
+import { dynamicActivate, getStoredLanguage, locales } from './i18n';
+import { useAppDispatch } from './store';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -36,10 +37,12 @@ const Box = styled.div<LayoutProps & SpaceProps>`
   background-color: green;
   padding: 1em;
 `;
-i18n.activate('en');
+
+i18n.activate(getStoredLanguage());
 
 export const App = () => {
   const [count, setCount] = useState(0);
+  const { i18n } = useLingui();
   const dispatch = useAppDispatch();
 
   const handleLanguageChange = async (lang: string) => {
@@ -50,8 +53,9 @@ export const App = () => {
   return (
     <div>
       <h2 style={{ backgroundColor: 'violet' }}>My React App</h2>
-      <Link to="test">Test</Link>
+      <Link to="test">Go to Test</Link>
       <div className="lang-container">
+        <div>Current Lang: {i18n.locale}</div>
         {Object.values(locales).map((locale, index) => (
           <button
             type="button"
@@ -65,13 +69,14 @@ export const App = () => {
         ))}
       </div>
       <Box m={1} px={10} width={[1, 1 / 4, 1 / 2, 1]}>
-        I am a box
+        Inside a BOX
       </Box>
       <button onClick={() => setCount(c => c + 1)}>
         <Trans>Increment</Trans>
       </button>
+      <div>Test</div>
       <div>
-        <Trans>App count</Trans> {count}
+        <Trans>App counting: </Trans> {count}
       </div>
       <p>{t`Template literal string`}</p>
       <p>{t`lit string`}</p>

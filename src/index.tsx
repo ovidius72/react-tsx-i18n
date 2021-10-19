@@ -1,19 +1,15 @@
-// import { AppContainer } from 'react-hot-loader'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useEffect, lazy, Suspense } from 'react';
-
-// import { App } from './App';
 // import stores from './store';
 import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
-import { defaultLocale, dynamicActivate } from './i18n';
+import React, { lazy, StrictMode, Suspense, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-// import { TestComponent } from './components/TestComponent';
-import { store } from './store';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { defaultLocale, dynamicActivate } from './i18n';
+import { store } from './store';
 
 const root = document.getElementById('root');
-const basePath = '/';
+const basePath = process.env.BASE_PATH || '/';
 //@ts-ignore
 const App = lazy(() => import('./App'));
 //@ts-ignore
@@ -39,14 +35,15 @@ const I18nApp = () => {
 };
 
 //@ts-ignore
-ReactDOM.unstable_createRoot(root).render(
-  <React.StrictMode>
+ReactDOM.render(
+  <StrictMode>
     <Provider store={store}>
       <Suspense fallback={<div>Loading...</div>}>
         <I18nApp />
       </Suspense>
     </Provider>
-  </React.StrictMode>,
+  </StrictMode>,
+  root,
 );
 
 // COMMENTED OUT: Testin react refresh webpack plugin.

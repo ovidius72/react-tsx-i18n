@@ -22,10 +22,17 @@ module.exports = (env, {mode}) => {
         }),
       ],
       stats: 'errors-only',
-      devtool: 'source-map',
+      devtool: 'nosources-source-map',
       optimization: {
         runtimeChunk: 'single',
-        minimize: true,
+        minimizer: [
+          new TerserPlugin({
+            parallel: true,
+            terserOptions: {
+              test: /\.js(\?.*)?$/i,
+            }
+          }),
+        ],
       },
     });
   });

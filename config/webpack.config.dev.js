@@ -15,7 +15,7 @@ module.exports = (env, { mode }) => {
         ],
       },
       plugins: [new webpack.HotModuleReplacementPlugin()],
-      devtool: 'inline-cheap-module-source-map',
+      devtool: 'cheap-module-source-map',
       optimization: {
         minimizer: [
           new TerserPlugin({
