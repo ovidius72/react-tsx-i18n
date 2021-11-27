@@ -1,11 +1,8 @@
-// import { I18nProvider } from '@lingui/react';
-// import { ILanguageStore } from 'models/languageStore';
 import { i18n } from '@lingui/core';
 import { Plural, t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components/macro';
 import { layout, LayoutProps, space, SpaceProps } from 'styled-system';

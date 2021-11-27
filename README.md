@@ -1,5 +1,36 @@
 # React Starter Kit (WIP)
-React + Typescript + MST + i18n + Styled Components
+React + Typescript + Redux Toolkit + Lingui + Styled Components
+
+## NEW SETUP: (WIP)
+
+#### IN PROGRESS:
+- funcional patterns 
+- suspense, error boundary
+- testing components (jest and react testing library)
+
+#### TODO:
+- clean up package.json (takes too much time to install)
+- recoil
+- testing hooks
+- custom hooks
+- storybook
+- generic state types
+- styled system components (Create common components). Maybe as a separate package.
+- cli (features, components, test runner, ...)
+- webvitals
+- service worker
+
+#### DONE
+- review module aliases
+- remove node-sass
+- redux toolik createApi and rtkQuery DONE
+- husky DONE
+- lint staged DONE
+- prettier DONE
+- lint DONE
+
+---
+# deprecated.
 
 ### Webpack 4
 3 pre-build configuration:

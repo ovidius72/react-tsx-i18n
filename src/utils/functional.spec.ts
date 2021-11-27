@@ -20,8 +20,10 @@ describe('Functional code', () => {
     const twoArgsFun = (a: number, b: number) => a + b;
     const to10 = curry(twoArgsFun, 10);
     const to20 = curry(twoArgsFun, 20);
-    const calc = compose(to10, to20);
-    expect(calc(5)).toEqual(35);
+    const to40 = curry(twoArgsFun, 40);
+    const to50 = curry(twoArgsFun, 50);
+    const calc = compose(to10, to20, to40, to50);
+    expect(calc(5)).toEqual(125);
   });
 
   test('Test Pipe & Compose', () => {
