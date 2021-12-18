@@ -26,14 +26,11 @@ function loadEnvs(addToProcess = true, mode) {
 
 const getEnvs = mode => {
   const envsObject = loadEnvs(true, mode);
-  const envs = Object.keys(envsObject).reduce((acc, curr) => {
-    acc[`process.env.${curr}`] = JSON.stringify(envsObject[curr]);
-    return acc;
-  }, {});
   return envsObject;
 }
+
 module.exports = {
-  asObject: addToProcess => loadEnvs(addToProcess),
-  asArray: addToProcess => Object.keys(loadEnvs(addToProcess)),
+  asObject: (addToProcess, mode) => loadEnvs(addToProcess, mode),
+  asArray: (addToProcess, mode) => Object.keys(loadEnvs(addToProcess, mode)),
   getEnvs,
 };

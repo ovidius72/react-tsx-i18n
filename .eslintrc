@@ -16,7 +16,6 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2020,
-    "project": "./tsconfig.json",
     "ecmaFeatures": {
       "legacyDecorators": true,
       "jsx": true

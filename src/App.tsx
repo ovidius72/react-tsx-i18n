@@ -9,6 +9,7 @@ import { layout, LayoutProps, space, SpaceProps } from 'styled-system';
 import { languageActions } from './features/language/language.slice';
 import { dynamicActivate, getStoredLanguage, locales } from './i18n';
 import { useAppDispatch } from './store';
+import Logo from 'images/Logo.png';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -51,6 +52,7 @@ export const App = () => {
     <div>
       <h2 style={{ backgroundColor: 'violet' }}>My React App</h2>
       <Link to="test">Go to Test</Link>
+      <img width={260} src={Logo} />
       <div className="lang-container">
         <div>Current Lang: {i18n.locale}</div>
         {Object.values(locales).map((locale, index) => (

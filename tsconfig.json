@@ -5,6 +5,7 @@
     "allowJs": true,
     "lib": ["dom", "es2017"],
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "jsx": "preserve",
@@ -18,11 +19,13 @@
     "paths": {
       "models/*": ["src/models/*"],
       "images/*": ["src/images/*"],
+      "features/*": ["src/features/*"],
+      "api/*": ["src/api/*"],
       "src/*": ["src/*"],
       "utils/*": ["src/utils/*"],
       "components/*": ["src/components/*"]
     }
   },
   "exclude": ["node_modules", "build", "locale", "config"],
-  "include": ["./src/**/*", "./typings/**/*.d.ts", "./testing/test-setup.ts"]
+  "include": ["./src/**/*", "./typings/**/*.d.ts", "./testing/test-setup.ts"],
 }

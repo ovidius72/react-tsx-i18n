@@ -49,12 +49,16 @@ const config = (mode, cb) => {
       mode,
       entry: paths.entry,
       context: paths.root,
+      experiments: {
+        asset: true,
+      },
       output: {
         path: paths.build,
         publicPath: BASE_PATH,
         filename: 'bundle-[name]-[fullhash].js',
         chunkFilename: 'chunk-[name]-[chunkhash].js',
         clean: true,
+        assetModuleFilename: 'assets/[name]-[hash].[ext]',
         // globalObject: 'this'
       },
       module: {
@@ -87,25 +91,18 @@ const config = (mode, cb) => {
             ],
           },
           {
-            test: /\.(png|jpg|jpeg|gif|svg|mp3)$/,
-            use: {
-              loader: 'file-loader',
-              options: {
-                name: './images/[name]-[fullhash].[ext]',
-              },
+            test: /\.(png|jpg|jpeg|gif|svg)$/,
+            type: 'asset/resource',
+            generator: {
+              filename: 'images/[name]-[hash].[ext]',
             },
           },
           {
             test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  name: '[name].[ext]',
-                  outputPath: 'fonts/',
-                },
-              },
-            ],
+            type: 'asset/resource',
+            generator: {
+              filename: 'fonts/[name]-[hash].[ext]',
+            },
           },
           // {
           //   test: /\.(scss|sass)$/,
@@ -146,6 +143,8 @@ const config = (mode, cb) => {
         alias: {
           models: path.join(paths.src, 'models'),
           images: path.join(paths.src, 'images'),
+          api: path.join(paths.src, 'api'),
+          features: path.join(paths.src, 'features'),
           utils: path.join(paths.src, 'utils'),
           components: path.join(paths.src, 'components'),
           src: paths.src,
