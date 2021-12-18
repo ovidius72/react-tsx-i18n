@@ -1,9 +1,12 @@
 {
+  "tslintIntegration": true,
   "singleQuote": true,
   "jsxSingleQuote": false,
+  "tsxSingleQuote": false,
   "semi": true,
   "tabWidth": 2,
   "bracketSpacing": true,
   "arrowParens": "avoid",
+  "useTabs": false,
   "trailingComma": "all"
 }

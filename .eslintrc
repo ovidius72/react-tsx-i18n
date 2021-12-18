@@ -4,7 +4,8 @@
     "plugin:@typescript-eslint/recommended",
     "eslint:recommended",
     "plugin:prettier/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "env": {
     "browser": true,
@@ -13,7 +14,7 @@
     "jest": true,
     "es2021": true
   },
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier", "react-hooks"],
   "parserOptions": {
     "ecmaVersion": 2020,
     "ecmaFeatures": {
