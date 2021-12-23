@@ -23,9 +23,10 @@
       "api/*": ["src/api/*"],
       "src/*": ["src/*"],
       "utils/*": ["src/utils/*"],
-      "components/*": ["src/components/*"]
+      "components/*": ["src/components/*"],
+      "types": ["./node_modules/@lingui/macro/global", "node"]
     }
   },
   "exclude": ["node_modules", "build", "locale", "config"],
-  "include": ["./src/**/*", "./typings/**/*.d.ts", "./testing/test-setup.ts"],
+  "include": ["./src/**/*", "./typings/**/*.d.ts", "./testing/test-setup.ts"]
 }
