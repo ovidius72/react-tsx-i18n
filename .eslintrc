@@ -32,10 +32,7 @@
     "indent": "off",
     "no-use-before-define": "off",
     "no-debugger": "off",
-    "no-unused-vars": [
-      "warn",
-      { "ignoreRestSiblings": true, "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
-    ],
+    "no-unused-vars": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "semi": 0,

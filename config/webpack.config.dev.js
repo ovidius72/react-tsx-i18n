@@ -22,7 +22,7 @@ module.exports = (env, { mode }) => {
             parallel: true,
             terserOptions: {
               test: /\.js(\?.*)?$/i,
-            }
+            },
           }),
         ],
       },

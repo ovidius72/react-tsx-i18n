@@ -1,3 +1,4 @@
+const path = require('path');
 const { merge } = require('webpack-merge');
 const chalk = require('chalk');
 // const webpack = require('webpack');
@@ -19,10 +20,57 @@ const getLocalExternalIP = () =>
 
 const ip = getLocalExternalIP();
 
+let compiled = false;
+const MyReporter = (host, port) => ({
+  // start (context) {
+  //   consola.info(`Compiling ${context.state.name}`)
+  // },
+  // change (context, { shortPath }) {
+  //   consola.debug(`${shortPath} changed.`, `Rebuilding ${context.state.name}`)
+  // },
+  // done (context) {
+  //   const { hasError, message, name } = context.state
+  //   consola[hasError ? 'error' : 'success'](`${name}: ${message}`)
+  // },
+  done() {
+    const parsedHost =
+      host === '0.0.0.0' || host === 'localhost' ? 'localhost' : host;
+    const localText = chalk.cyanBright.bold(
+      ` - Local:   http://${parsedHost}:${port}`,
+    );
+    const local = '🎸' + localText;
+    const networkText = chalk.yellowBright.bold(
+      ` - Network: http://${ip}:8080`,
+    );
+    const network = '🚀' + networkText;
+    const len = Math.max(localText.length, networkText.length);
+    const dashes = new Array(len - 15).fill('-').join('');
+
+    if (!compiled) {
+      console.log(chalk.green.bold('✅ Server started!'));
+      console.log();
+      console.log(chalk.cyanBright.bold('App running at:'));
+      console.log(chalk.greenBright(dashes));
+      console.log(local);
+      console.log(network);
+      console.log(chalk.greenBright(dashes));
+      console.log(chalk.magenta('Press CTRL-c to stop'));
+      console.log();
+    } else {
+      console.log(local);
+      console.log(network);
+      console.log(chalk.magenta('Press CTRL-c to stop'));
+      console.log();
+    }
+    compiled = true;
+  },
+});
+
 module.exports = (env, { mode }) => {
   const newConfig = getConfig(
     mode,
-    ({ BASE_PATH, DEV_PORT, DEV_HOST }, baseConfig) => {
+    ({ BASE_PATH, DEV_PORT, DEV_HOST, paths }, baseConfig) => {
+      const static = path.join(paths.root, BASE_PATH);
       return merge(baseConfig, {
         mode,
         module: {
@@ -73,7 +121,8 @@ module.exports = (env, { mode }) => {
           hot: true,
           // headers: () => ({ 'x-webpack-template': 'react-tsx-i18n' }),
           historyApiFallback: true,
-          static: { directory: BASE_PATH },
+          // static: { directory: static },
+          static: ['public'],
           client: {
             progress: false,
             overlay: {
@@ -115,49 +164,3 @@ module.exports = (env, { mode }) => {
   );
   return newConfig;
 };
-
-let compiled = false;
-const MyReporter = (host, port) => ({
-  // start (context) {
-  //   consola.info(`Compiling ${context.state.name}`)
-  // },
-  // change (context, { shortPath }) {
-  //   consola.debug(`${shortPath} changed.`, `Rebuilding ${context.state.name}`)
-  // },
-  // done (context) {
-  //   const { hasError, message, name } = context.state
-  //   consola[hasError ? 'error' : 'success'](`${name}: ${message}`)
-  // },
-  done() {
-    const parsedHost =
-      host === '0.0.0.0' || host === 'localhost' ? 'localhost' : host;
-    const localText = chalk.cyanBright.bold(
-      ` - Local:   http://${parsedHost}:${port}`,
-    );
-    const local = '🎸' + localText;
-    const networkText = chalk.yellowBright.bold(
-      ` - Network: http://${ip}:8080`,
-    );
-    const network = '🚀' + networkText;
-    const len = Math.max(localText.length, networkText.length);
-    const dashes = new Array(len - 15).fill('-').join('');
-
-    if (!compiled) {
-      console.log(chalk.green.bold('✅ Server started!'));
-      console.log();
-      console.log(chalk.cyanBright.bold('App running at:'));
-      console.log(chalk.greenBright(dashes));
-      console.log(local);
-      console.log(network);
-      console.log(chalk.greenBright(dashes));
-      console.log(chalk.magenta('Press CTRL-c to stop'));
-      console.log();
-    } else {
-      console.log(local);
-      console.log(network);
-      console.log(chalk.magenta('Press CTRL-c to stop'));
-      console.log();
-    }
-    compiled = true;
-  },
-});

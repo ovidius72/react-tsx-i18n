@@ -42,7 +42,6 @@ export const App = () => {
   const [count, setCount] = useState(0);
   const { i18n } = useLingui();
   const dispatch = useAppDispatch();
-
   const handleLanguageChange = async (lang: string) => {
     dispatch(languageActions.setCatalog(lang));
     await dynamicActivate(lang);
@@ -59,7 +58,7 @@ export const App = () => {
           <button
             type="button"
             onClick={async () =>
-              await handleLanguageChange(Object.keys(locales)[index])
+              await handleLanguageChange(Object.keys(locales)[index] || 'en')
             }
             key={locale}
           >
