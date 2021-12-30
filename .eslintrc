@@ -5,6 +5,7 @@
     "eslint:recommended",
     "plugin:prettier/recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended"
   ],
   "env": {
@@ -41,13 +42,14 @@
     "space-before-function-paren": 0,
     "react/prop-types": 0,
     "react/jsx-handler-names": 0,
+    "react/react-in-jsx-scope": 0,
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
     "import/export": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-unused-vars": [
       "warn",
-      { "ignoreRestSiblings": true, "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
+      { "vars": "all", "ignoreRestSiblings": true, "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
     ],
     "@typescript-eslint/ban-ts-ignore": 0,
     "@typescript-eslint/ban-ts-comment": 0,

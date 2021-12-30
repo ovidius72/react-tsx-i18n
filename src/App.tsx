@@ -1,7 +1,7 @@
 import { i18n } from '@lingui/core';
 import { Plural, t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components/macro';

@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro';
-import React, { useState, FC } from 'react';
+import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetAllPhotosQuery } from 'src/api/photosApi';
 

@@ -152,13 +152,22 @@ const config = (mode, cb) => {
       },
       plugins: [
         new webpack.DefinePlugin(envs),
-        new ForkTsCheckerWebpackPlugin({
-          eslint: {
-            files: ['./src/**/*.ts', './src/**/*.tsx'],
-          },
-        }),
+        // new ForkTsCheckerWebpackPlugin({
+        //   eslint: {
+        //     files: ['./src/**/*.ts', './src/**/*.tsx'],
+        //   },
+        // }),
         new ESLintPlugin({
-          files: ['./src/**/*.ts', './src/**/*.tsx'],
+          files: ['src/**/*.ts', 'src/**/*.tsx'],
+          exclude: [
+            'locales',
+            'config',
+            'build',
+            'testing',
+            'public',
+            'node_modules',
+          ],
+          failOnWarning: true,
         }),
         // new FaviconsWebpackPlugin({
         //   logo: path.join(paths.public, 'favicon.png'),

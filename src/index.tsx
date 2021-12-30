@@ -1,7 +1,7 @@
 // import stores from './store';
 import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
-import React, { lazy, StrictMode, Suspense, useEffect } from 'react';
+import { lazy, StrictMode, Suspense, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
