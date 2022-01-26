@@ -1,6 +1,15 @@
+// simple function to generate UUID
 export const uuid = () => (1000 - 1 + 1) * Math.random();
 
 export const objectToArray = async (keyedObject: {
+  [key: string]: any;
+}): Promise<any> => {
+  const keys = Object.keys(keyedObject);
+  const res: any[] = keys.map(k => ({ ...keyedObject[k], __key: k }));
+  return res;
+};
+
+export const objectToArrayAsync = async (keyedObject: {
   [key: string]: any;
 }): Promise<any> => {
   return await new Promise(resolve => {

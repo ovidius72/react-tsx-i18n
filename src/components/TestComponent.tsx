@@ -16,8 +16,8 @@ const TestComponent: FC<TestComponentProps> = () => {
           Go to Home
         </Link>
       </div>
-      <div>is fething: {String(fetcher.isFetching)}</div>
-      <div>is loading: {String(fetcher.isLoading)}</div>
+      <div>Is fetching data ?: {String(fetcher.isFetching)}</div>
+      <div>Is Loading data ? : {String(fetcher.isLoading)}</div>
       <button onClick={() => setCount(c => c + 1)}>
         <Trans>Increment</Trans>
       </button>
