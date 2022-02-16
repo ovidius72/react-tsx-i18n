@@ -1,8 +1,9 @@
 import { i18n } from '@lingui/core';
 import { Plural, t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
+import { usePostSlice } from 'features/posts/usePostSlice';
 import Logo from 'images/Logo.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components/macro';
@@ -45,10 +46,18 @@ export const App = () => {
   const [count, setCount] = useState(9);
   const { i18n } = useLingui();
   const dispatch = useAppDispatch();
+  const { fetchAll, data, loading } = usePostSlice();
+  console.log('loading', loading);
+  console.log('data', data);
+
   const handleLanguageChange = async (lang: string) => {
     dispatch(languageActions.setCatalog(lang));
     await dynamicActivate(lang);
   };
+
+  useEffect(() => {
+    fetchAll();
+  }, [fetchAll]);
 
   return (
     <div>
