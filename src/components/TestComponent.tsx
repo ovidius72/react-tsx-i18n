@@ -8,7 +8,6 @@ export interface TestComponentProps {}
 const TestComponent: FC<TestComponentProps> = () => {
   const [count, setCount] = useState(0);
   const fetcher = useGetAllPhotosQuery(10, { pollingInterval: 2000 });
-  console.log('fetcher', fetcher);
   return (
     <div>
       <div>
