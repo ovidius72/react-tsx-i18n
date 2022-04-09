@@ -28,19 +28,26 @@ const initialState: PostState = {
   loading: false,
 };
 
+type ThunkApiConfig = {
+  rejectValue: string;
+  state: RootState;
+};
 export const postActions = {
-  fetchAll: createAsyncThunk<Post[], void>('fetchAll', async (_, thunkApi) => {
-    try {
-      const response = await apiService.posts.getAll();
-      const json: Post[] = await response.json();
-      return json;
-    } catch (e) {
-      return thunkApi.rejectWithValue('Errore chiamata fetchOne');
-    }
-  }),
+  fetchAll: createAsyncThunk<Post[], void, ThunkApiConfig>(
+    '@post/fetchAll',
+    async (_, thunkApi) => {
+      try {
+        const response = await apiService.posts.getAll();
+        const json: Post[] = await response.json();
+        return json;
+      } catch (e) {
+        return thunkApi.rejectWithValue('Errore chiamata fetchOne');
+      }
+    },
+  ),
 
   fetchOne: createAsyncThunk<Post, number, { rejectValue: string }>(
-    'fetchOne',
+    '@post/fetchOne',
     async (id, thunkApi) => {
       try {
         const response = await apiService.posts.getOne(id);
@@ -101,6 +108,10 @@ export const postLoadingSelector = createSelector(postStateSelector, posts => {
 
 export const postErrorSelector = createSelector(postStateSelector, posts => {
   return posts.error;
+});
+
+export const hasError = createSelector(postErrorSelector, error => {
+  return !!error;
 });
 
 export default postsSlice;

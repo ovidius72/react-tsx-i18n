@@ -13,12 +13,12 @@ export const usePostSlice = () => {
   const data = useSelector(postDataSelector);
 
   const fetchAll = useCallback(() => {
-    dispatch(postActions.fetchAll());
+    return dispatch(postActions.fetchAll());
   }, [dispatch]);
 
   const fetchOne = useCallback(
     (id: number) => {
-      dispatch(postActions.fetchOne(id));
+      return dispatch(postActions.fetchOne(id));
     },
     [dispatch],
   );
