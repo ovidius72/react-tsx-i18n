@@ -1,52 +1,33 @@
-// import { Trans } from '@lingui/macro';
-// import { FC, useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { useGetAllPhotosQuery } from 'src/api/photosApi';
-
-import { usePostSlice } from 'features/posts/usePostSlice';
+import { useLazyGetAllPostsQuery } from 'api/postsApi';
 import { useEffect } from 'react';
 
-// export interface TestComponentProps {}
-
-// const TestComponent: FC<TestComponentProps> = () => {
-//   const [count, setCount] = useState(0);
-//   const fetcher = useGetAllPhotosQuery(10, { pollingInterval: 2000 });
-//   return (
-//     <div>
-//       <div>
-//         <Link is="div" to="/">
-//           Go to Home
-//         </Link>
-//       </div>
-//       <div>Is fetching data ?: {String(fetcher.isFetching)}</div>
-//       <div>Is Loading data ? : {String(fetcher.isLoading)}</div>
-//       <button onClick={() => setCount(c => c + 1)}>
-//         <Trans>Increment</Trans>
-//       </button>
-//       <button onClick={() => setCount(c => c - 1)}>
-//         <Trans>Decrement</Trans>
-//       </button>
-//       <div>Test: {count}</div>
-//     </div>
-//   );
-// };
-
 const TestComponent = () => {
-  const { loading, data, fetchAll } = usePostSlice();
+  const [fetchPosts, { isSuccess, data = [] }] = useLazyGetAllPostsQuery();
+  console.log('*****: isSuccess', isSuccess);
+  // const limit = useRef(10);
+  // const skip = useRef(0);
 
   useEffect(() => {
-    fetchAll();
-  }, [fetchAll]);
+    console.log('in useEffect');
+    // fetchAll();
+  }, []);
 
-  if (loading) {
-    return <div>Loading....</div>;
-  }
+  const handleFetchRequest = () => {
+    // const nextLimit = limit.current + 10;
+    // const nextSkip = skip.current + 1;
+    fetchPosts();
+  };
 
   return (
     <div>
-      {data.map(d => (
-        <div key={d.id}>{d.title}</div>
-      ))}
+      <div>
+        <button onClick={handleFetchRequest}>Load More</button>
+      </div>
+      <div>
+        {data.map(d => (
+          <div key={d.id}>{d.title}</div>
+        ))}
+      </div>
     </div>
   );
 };

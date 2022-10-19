@@ -1,0 +1,14 @@
+[19:38:40.858] Global cache location '/Users/antonio/Library/Caches/typescript/4.8', safe file path '/users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typingsafelist.json', types map path /users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typesmap.json
+[19:38:40.859] Processing cache location '/Users/antonio/Library/Caches/typescript/4.8'
+[19:38:40.859] Trying to find '/Users/antonio/Library/Caches/typescript/4.8/package.json'...
+[19:38:40.867] Unhandled exception: SyntaxError: Unexpected end of JSON input at SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at NodeTypingsInstaller.TypingsInstaller.processCacheLocation (/Users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typingsInstaller.js:128136:44)
+    at NodeTypingsInstaller.TypingsInstaller (/Users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typingsInstaller.js:128052:26)
+    at new NodeTypingsInstaller (/Users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typingsInstaller.js:128506:40)
+    at /Users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typingsInstaller.js:128650:29
+    at /Users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typingsInstaller.js:128657:11
+    at /Users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typingsInstaller.js:128658:7
+    at Object.<anonymous> (/Users/antonio/projects/personal/react/react-tsx-i18n/node_modules/typescript/lib/typingsInstaller.js:128659:3)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)

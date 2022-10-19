@@ -17,7 +17,6 @@ React + Typescript + Redux Toolkit + Lingui + Styled Components
 - generic state types
 - styled system components (Create common components). Maybe as a separate package.
 - cli (features, components, test runner, ...)
-- webvitals
 - service worker
 
 #### DONE
@@ -28,11 +27,12 @@ React + Typescript + Redux Toolkit + Lingui + Styled Components
 - lint staged DONE
 - prettier DONE
 - lint DONE
+- webvitals DONE
 
 ---
 # deprecated.
 
-### Webpack 4
+### Webpack 5
 3 pre-build configuration:
 - local development (includes web-dev-server)
 - DEV

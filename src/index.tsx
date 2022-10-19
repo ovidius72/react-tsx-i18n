@@ -3,17 +3,24 @@ import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import { lazy, StrictMode, Suspense, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { defaultLocale, dynamicActivate } from './i18n';
+import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 
-const root = document.getElementById('root');
+const container = document.getElementById('root');
+const root = createRoot(container as HTMLElement);
+
 const basePath = process.env.BASE_PATH || '/';
-//@ts-ignore
 const App = lazy(() => import('./App'));
-//@ts-ignore
+const TransitionComponent = lazy(() => import('./components/Transition'));
 const TestComponent = lazy(() => import('./components/TestComponent'));
+const FormComponent = lazy(() => import('./components/FormComponent'));
+const FetchComponent = lazy(() => import('./components/FetchComponent'));
+
+const renderInStrictMode = true;
 
 const I18nApp = () => {
   useEffect(() => {
@@ -28,34 +35,32 @@ const I18nApp = () => {
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="test" element={<TestComponent />} />
+          <Route path="form" element={<FormComponent />} />
+          <Route path="fetch" element={<FetchComponent />} />
+          <Route path="transition" element={<TransitionComponent />} />
+          <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </BrowserRouter>
     </I18nProvider>
   );
 };
 
-//@ts-ignore
-ReactDOM.render(
-  <StrictMode>
-    <Provider store={store}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <I18nApp />
-      </Suspense>
-    </Provider>
-  </StrictMode>,
-  root,
+const SuspendedApp = () => (
+  <Provider store={store}>
+    <Suspense fallback={<div>Loading...</div>}>
+      <I18nApp />
+    </Suspense>
+  </Provider>
 );
 
-// COMMENTED OUT: Testin react refresh webpack plugin.
-// TODO: Remove once testing in completed.
-//
-// // This is needed for Hot Module Replacement
-// if (module.hot != null) {
-//   console.log('module', module);
-//   module.hot.accept(() => {
-//     console.log('module accepted', module);
-//     // load()
-//   });
-// }
+if (renderInStrictMode) {
+  root.render(
+    <StrictMode>
+      <SuspendedApp />
+    </StrictMode>,
+  );
+} else {
+  ReactDOM.render(<SuspendedApp />, container);
+}
 
-// load()
+reportWebVitals();

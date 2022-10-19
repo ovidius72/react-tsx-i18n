@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { networkInterfaces } = require('os');
 
-const WebpaclCleanTerminalPlugin = require('clean-terminal-webpack-plugin');
+const WebpackCleanTerminalPlugin = require('clean-terminal-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const getConfig = require('./webpack.config.common');
 const package = require('../package.json');
@@ -121,8 +121,8 @@ module.exports = (env, { mode }) => {
           hot: true,
           // headers: () => ({ 'x-webpack-template': 'react-tsx-i18n' }),
           historyApiFallback: true,
-          // static: { directory: static },
-          static: ['public'],
+          static: { directory: static },
+          // static: ['public'],
           client: {
             progress: false,
             overlay: {
@@ -150,7 +150,7 @@ module.exports = (env, { mode }) => {
           // }),
           // new webpack.ProgressPlugin({ percentBy: 'entries' }),
 
-          new WebpaclCleanTerminalPlugin(),
+          new WebpackCleanTerminalPlugin(),
           new WebpackBar({
             color: 'cyan',
             profile: true,

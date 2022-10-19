@@ -7,13 +7,13 @@ const paths = {
   public: path.join(ROOT, 'public'),
   build: path.join(ROOT, 'build'),
   entry: path.join(ROOT, 'src', 'index.tsx'),
-  locale: path.join(ROOT, 'locale')
+  locale: path.join(ROOT, 'locale'),
 };
 
 const pathsToClean = ['build'];
 const cleanConfig = {
   root: paths.root,
-  verbose: true
+  verbose: true,
 };
 
 module.exports = {
@@ -21,4 +21,4 @@ module.exports = {
   paths,
   pathsToClean,
   cleanConfig,
-}
+};

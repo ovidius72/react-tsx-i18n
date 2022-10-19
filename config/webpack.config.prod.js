@@ -1,9 +1,10 @@
 const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const getConfig = require('./webpack.config.common');
 
-module.exports = (env, {mode}) => {
+module.exports = (env, { mode }) => {
   return getConfig(mode, (_, baseConfig) => {
     return merge(baseConfig, {
       module: {
@@ -28,9 +29,7 @@ module.exports = (env, {mode}) => {
         minimizer: [
           new TerserPlugin({
             parallel: true,
-            terserOptions: {
-              test: /\.js(\?.*)?$/i,
-            }
+            test: /\.js(\?.*)?$/i,
           }),
         ],
       },

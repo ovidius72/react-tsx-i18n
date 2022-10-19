@@ -14,38 +14,50 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/pages/MultiLanguage/MultiLanguage.tsx:14
-msgid "Add a message"
-msgstr "Add a message"
+#~ msgid "Add a message"
+#~ msgstr "Add a message"
 
 #: src/App.tsx:52
-msgid "App count"
-msgstr "App count"
+#~ msgid "App count"
+#~ msgstr "App count"
 
 #: src/components/TestComponent.tsx:14
-msgid "Decrement"
-msgstr "Decrement"
+#~ msgid "Decrement"
+#~ msgstr "Decrement"
 
-#: src/App.tsx:49
-#: src/components/TestComponent.tsx:11
+#: src/App.tsx:130
+msgid "Here is the App counting:"
+msgstr "Here is the App counting:"
+
+#: src/App.tsx:123
 msgid "Increment"
 msgstr "Increment"
 
 #: src/form/Language/LanguageSelector.tsx:30
-msgid "Language"
-msgstr "Language"
+#~ msgid "Language"
+#~ msgstr "Language"
 
-#: src/App.tsx:55
+#: src/App.tsx:136
 msgid "Template literal string"
 msgstr "Template literal string"
 
 #: src/pages/Home/Home.tsx:7
-msgid "This is the home page"
-msgstr "This is the home page"
+#~ msgid "This is the home page"
+#~ msgstr "This is the home page"
 
-#: src/App.tsx:56
+#: src/App.tsx:133
+#: src/App.tsx:140
+msgid "Today is Monday"
+msgstr "Today is Monday"
+
+#: src/App.tsx:126
+msgid "Toggle FakeComponent"
+msgstr "Toggle FakeComponent"
+
+#: src/App.tsx:137
 msgid "lit string"
 msgstr "lit string"
 
-#: src/App.tsx:58
+#: src/App.tsx:142
 msgid "{count, plural, zero {There are no books} one {There's one book} other {There are # books}}"
 msgstr "{count, plural, zero {There are no books} one {There's one book} other {There are # books}}"

@@ -14,38 +14,50 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/pages/MultiLanguage/MultiLanguage.tsx:14
-msgid "Add a message"
-msgstr "Aggiungi un messaggio"
+#~ msgid "Add a message"
+#~ msgstr "Aggiungi un messaggio"
 
 #: src/App.tsx:52
-msgid "App count"
-msgstr "Conteggio App"
+#~ msgid "App count"
+#~ msgstr "Conteggio App"
 
 #: src/components/TestComponent.tsx:14
-msgid "Decrement"
-msgstr "Decrementa"
+#~ msgid "Decrement"
+#~ msgstr "Decrementa"
 
-#: src/App.tsx:49
-#: src/components/TestComponent.tsx:11
+#: src/App.tsx:130
+msgid "Here is the App counting:"
+msgstr "Conteggio dell'app:"
+
+#: src/App.tsx:123
 msgid "Increment"
 msgstr "Incrementa"
 
 #: src/form/Language/LanguageSelector.tsx:30
-msgid "Language"
-msgstr "Lingua"
+#~ msgid "Language"
+#~ msgstr "Lingua"
 
-#: src/App.tsx:55
+#: src/App.tsx:136
 msgid "Template literal string"
-msgstr ""
+msgstr "Ciao "
 
 #: src/pages/Home/Home.tsx:7
-msgid "This is the home page"
-msgstr "Pagina Principale"
+#~ msgid "This is the home page"
+#~ msgstr "Pagina Principale"
 
-#: src/App.tsx:56
+#: src/App.tsx:133
+#: src/App.tsx:140
+msgid "Today is Monday"
+msgstr "Oggi e' lunedi"
+
+#: src/App.tsx:126
+msgid "Toggle FakeComponent"
+msgstr "Mostra/Nascondi FakeComponent"
+
+#: src/App.tsx:137
 msgid "lit string"
 msgstr "Stringa letterale"
 
-#: src/App.tsx:58
+#: src/App.tsx:142
 msgid "{count, plural, zero {There are no books} one {There's one book} other {There are # books}}"
 msgstr "{count, plural, zero {Non ci sono libri} one {C'e' un libro} other {Ci sono # libri}}"

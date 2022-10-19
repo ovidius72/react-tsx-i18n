@@ -49,9 +49,6 @@ const config = (mode, cb) => {
       mode,
       entry: paths.entry,
       context: paths.root,
-      experiments: {
-        asset: true,
-      },
       output: {
         path: paths.build,
         publicPath: BASE_PATH,
@@ -59,7 +56,6 @@ const config = (mode, cb) => {
         chunkFilename: 'chunk-[name]-[chunkhash].js',
         clean: true,
         assetModuleFilename: 'assets/[name]-[hash].[ext]',
-        // globalObject: 'this'
       },
       module: {
         rules: [
@@ -152,11 +148,7 @@ const config = (mode, cb) => {
       },
       plugins: [
         new webpack.DefinePlugin(envs),
-        // new ForkTsCheckerWebpackPlugin({
-        //   eslint: {
-        //     files: ['./src/**/*.ts', './src/**/*.tsx'],
-        //   },
-        // }),
+        new ForkTsCheckerWebpackPlugin(),
         new ESLintPlugin({
           files: ['src/**/*.ts', 'src/**/*.tsx'],
           exclude: [

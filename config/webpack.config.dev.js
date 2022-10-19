@@ -20,9 +20,7 @@ module.exports = (env, { mode }) => {
         minimizer: [
           new TerserPlugin({
             parallel: true,
-            terserOptions: {
-              test: /\.js(\?.*)?$/i,
-            },
+            test: /\.js(\?.*)?$/i,
           }),
         ],
       },

@@ -11,7 +11,11 @@ function loadEnvs(addToProcess = true, mode) {
   const envFiles = fs.readdirSync(path.join(__dirname, 'envs'));
 
   envFiles.forEach(file => {
-    if (file === '.env' || file === `.env.${$NODE_ENV}` || file === `.env.${$NODE_ENV}.local`) {
+    if (
+      file === '.env' ||
+      file === `.env.${$NODE_ENV}` ||
+      file === `.env.${$NODE_ENV}.local`
+    ) {
       const filePath = fs.readFileSync(path.join(__dirname, 'envs', file));
       const config = dotenv.parse(filePath);
       const keys = Object.keys(config);
@@ -27,7 +31,7 @@ function loadEnvs(addToProcess = true, mode) {
 const getEnvs = mode => {
   const envsObject = loadEnvs(true, mode);
   return envsObject;
-}
+};
 
 module.exports = {
   asObject: (addToProcess, mode) => loadEnvs(addToProcess, mode),

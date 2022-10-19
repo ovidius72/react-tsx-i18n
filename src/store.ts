@@ -3,15 +3,17 @@ import { configureStore } from '@reduxjs/toolkit';
 import { photosApi } from './api/photosApi';
 import { languageSlice } from './features/language/language.slice';
 import postsSlice from 'features/posts/posts.sclice';
+import { postsApi } from 'api/postsApi';
 
 export const store = configureStore({
   reducer: {
     language: languageSlice.reducer,
     posts: postsSlice.reducer,
     [photosApi.reducerPath]: photosApi.reducer,
+    [postsApi.reducerPath]: postsApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(photosApi.middleware),
+    getDefaultMiddleware().concat(photosApi.middleware, postsApi.middleware),
   devTools: true,
 });
 
