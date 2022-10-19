@@ -19,10 +19,6 @@ const account: Account = {
   fees: { sign: -1, amount: 12 },
 };
 
-
-
-
-
 const printBalance = (account: Account) => {
   console.log(`${'Debit'.padEnd(15)} ${account.debits.amount.toFixed(2)}`);
   console.log(`${'Credits'.padEnd(15)} ${account.credits.amount.toFixed(2)}`);
@@ -44,26 +40,6 @@ const printBalance = (account: Account) => {
 console.log('TEST 1: >>>>>>>>>>>>>>>>');
 printBalance(account);
 console.log('END Test 1 <<<<<');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // 1 - copy/past for negative values.
 //const formatAmount = (value: AmountType) => {
