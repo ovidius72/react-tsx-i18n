@@ -3,10 +3,8 @@
 import { i18n } from '@lingui/core';
 import { Plural, t, Trans } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { log } from 'console';
-import { usePostSlice } from 'features/posts/usePostSlice';
 import Logo from 'images/Logo.png';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { flushSync } from 'react-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -21,9 +19,7 @@ import {
   space,
   SpaceProps,
 } from 'styled-system';
-import { languageActions } from './features/language/language.slice';
-import { dynamicActivate, getStoredLanguage, locales } from './i18n';
-import { useAppDispatch } from './store';
+import { getStoredLanguage } from './i18n';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -82,19 +78,19 @@ i18n.activate(getStoredLanguage());
 export const App = () => {
   const [count, setCount] = useState(9);
   const { i18n } = useLingui();
-  const dispatch = useAppDispatch();
-  const { fetchAll /*, data, loading */ } = usePostSlice();
+  // const dispatch = useAppDispatch();
+  // const { fetchAll /*, data, loading */ } = usePostSlice();
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleLanguageChange = async (lang: string) => {
-    dispatch(languageActions.setCatalog(lang));
-    await dynamicActivate(lang);
-  };
+  // const handleLanguageChange = async (lang: string) => {
+  //   dispatch(languageActions.setCatalog(lang));
+  //   await dynamicActivate(lang);
+  // };
 
-  useEffect(() => {
-    console.log('in useEffect: APP');
-    fetchAll();
-  }, [fetchAll]);
+  // useEffect(() => {
+  //   console.log('in useEffect: APP');
+  //   fetchAll();
+  // }, [fetchAll]);
 
   return (
     <div>
@@ -117,19 +113,16 @@ export const App = () => {
           Goto FetchComponent
         </Link>
       </div>
+      <div>
+        <Link
+          style={{ margin: '12px 0', display: 'inline-block' }}
+          to="counter"
+        >
+          Goto Counter
+        </Link>
+      </div>
       <div className="language-container">
         <div>Current Language: {i18n.locale}</div>
-        {Object.values(locales).map((locale, index) => (
-          <button
-            type="button"
-            onClick={async () =>
-              await handleLanguageChange(Object.keys(locales)[index] || 'en')
-            }
-            key={locale}
-          >
-            {locale}
-          </button>
-        ))}
       </div>
       <Box my={3} px={10} width={[1, 1 / 8, 1 / 2, 1 / 1]} borderStyle="ridge">
         Inside a BOX

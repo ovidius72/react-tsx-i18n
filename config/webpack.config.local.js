@@ -73,14 +73,6 @@ module.exports = (env, { mode }) => {
       const static = path.join(paths.root, BASE_PATH);
       return merge(baseConfig, {
         mode,
-        module: {
-          rules: [
-            {
-              test: /\.css$/,
-              use: ['style-loader', 'css-loader'],
-            },
-          ],
-        },
         infrastructureLogging: {
           level: 'warn',
         },
