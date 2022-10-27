@@ -1,23 +1,6 @@
-import { FC, ReactNode } from 'react';
-import { CSSProperties } from 'styled-components';
-
-type SectionType = {
-  key: string;
-  scrollDescriptionText?: string;
-  children?: ReactNode;
-  backgroundColor?: string;
-  backgroundImage?: string;
-};
-
-type MenuSectionType = {
-  sections: SectionType[];
-  key: string;
-  name: string;
-};
-
-type MenuSectionWrapperType = {
-  MenuSection: MenuSectionType[];
-};
+import { MenuSectionWrapper } from './MenuSections/MenuSectionContainer';
+import { MenuSectionWrapperType } from './MenuSections/types';
+import { NavigationBar } from './navigation/NavigationBar';
 
 export const menus: MenuSectionWrapperType = {
   MenuSection: [
@@ -25,6 +8,12 @@ export const menus: MenuSectionWrapperType = {
       name: 'First',
       key: 'uno',
       sections: [
+        {
+          key: 'abbbbb',
+          backgroundColor: 'magenta',
+          children: <div>I&apos;m the very first section</div>,
+          scrollDescriptionText: 'Scroll and enjoy',
+        },
         {
           key: 'aa',
           backgroundColor: 'green',
@@ -57,93 +46,56 @@ export const menus: MenuSectionWrapperType = {
         },
       ],
     },
+    {
+      name: 'Third',
+      key: 'tre',
+      sections: [
+        {
+          key: 'bbii',
+          backgroundColor: 'red',
+          children: <div>I&apos;m the section 3-1</div>,
+          scrollDescriptionText: 'Scroll and enjoy',
+        },
+        {
+          key: 'cckk',
+          backgroundColor: 'blue',
+          children: <div>I&apos;m the section 3-2</div>,
+          scrollDescriptionText: 'Scroll and enjoy',
+        },
+      ],
+    },
+    {
+      name: 'Forth',
+      key: 'four',
+      sections: [
+        {
+          key: 'bbiiaa',
+          backgroundColor: 'red',
+          children: <div>I&apos;m the section 4-1</div>,
+          scrollDescriptionText: 'Scroll and enjoy',
+        },
+        {
+          key: 'cckkaa',
+          backgroundColor: 'blue',
+          children: <div>I&apos;m the section 4-2</div>,
+          scrollDescriptionText: 'Scroll and enjoy',
+        },
+      ],
+    },
   ],
 };
 
-export const getNavigationFromMenuSection = (
-  menuSections: MenuSectionWrapperType,
-) => {
-  return menuSections.MenuSection.reduce((acc, curr) => {
-    return [...acc, curr.name];
-  }, []);
-};
-
-type MenuSectionContainerProp = {
-  menuSectionWrapper: MenuSectionWrapperType;
-};
-
-type MenuSectionComponentProp = {
-  sections: SectionType[];
-};
-
-type MenuSectionProp = {
-  section: SectionType;
-};
-
-const MenuSection: FC<MenuSectionProp> = ({ section }) => {
-  const {
-    key,
-    backgroundColor,
-    backgroundImage,
-    children,
-    scrollDescriptionText,
-  } = section;
-  const style: CSSProperties = {
-    backgroundImage,
-    background: backgroundColor,
-  };
-
-  return (
-    <div key={key} className="__menu-section" style={style}>
-      {children}
-      {scrollDescriptionText ? (
-        <div className="__menu-section-scroll-description-text">
-          {scrollDescriptionText}
-        </div>
-      ) : null}
-    </div>
-  );
-};
-
-const MenuSectionsComponent: FC<MenuSectionComponentProp> = ({ sections }) => {
-  return (
-    <>
-      {sections.map(s => (
-        <div key={s.key} className="__menu-section-wrapper">
-          <MenuSection section={s} key={s.key} />
-        </div>
-      ))}
-    </>
-  );
-};
-
-const MenuSectionWrapper: FC<MenuSectionContainerProp> = ({
-  menuSectionWrapper,
-}) => {
-  const menuSections = menuSectionWrapper.MenuSection;
-  return (
-    <div className="__menu-sections-container">
-      {menuSections.map(s => (
-        <div key={s.key} className="__menu-section-component">
-          <MenuSectionsComponent sections={s.sections} key={s.key} />
-        </div>
-      ))}
-    </div>
-  );
-};
-
 export const Template = () => {
-  return <MenuSectionWrapper menuSectionWrapper={menus} />;
-  // return (
-  //   <section className="scrollable-wrapper">
-  //     <div className="section-item">Section 1</div>
-  //     <div className="section-item">Section 2</div>
-  //     <div className="section-item">Section 3</div>
-  //     <div className="section-item">Section 4</div>
-  //     <div className="section-item">Section 5</div>
-  //     <div className="section-item">Section 6</div>
-  //   </section>
-  // );
+  return (
+    <div id="landing" className="__landing">
+      <header className="__app-header">
+        <div>Logo</div>
+        <NavigationBar sectionWrapper={menus} />
+        <div>HambMenu</div>
+      </header>
+      <MenuSectionWrapper menuSectionWrapper={menus} />
+    </div>
+  );
 };
 
 export default Template;

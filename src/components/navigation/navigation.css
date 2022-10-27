@@ -1,0 +1,38 @@
+.__navigation-container {
+  color: black;
+  background-color: white;
+  background-color: white;
+  border-radius: 24px;
+  padding: 12px 44px;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+.__navigation-container .__navigation-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  list-style: none;
+}
+.__navigation-container .__navigation-item a{
+  cursor: pointer;
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 24px;
+}
+.__navigation-container a {
+  text-decoration: none;
+  font-size: 12px;
+}
+.__navigation-container .active a {
+  background-color: orangered;
+}
+.__navigation-container .active a {
+  color: white;
+  font-weight: bold;
+}
+
+.__navigation-container .__navigation-item a:hover {
+  text-decoration: none;
+}
