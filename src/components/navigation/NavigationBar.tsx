@@ -16,7 +16,7 @@ const NavigationBar: FC<NavigationBarProps> = ({ sectionWrapper }) => {
     title: m.name,
   }));
   const ids = useMemo(() => sections.map(s => s.id), [sections]);
-  console.log('*****: ids', ids);
+
   const handleClick = (id: string) => {
     console.log('started', id);
     setCurrItem(id);
@@ -32,6 +32,7 @@ const NavigationBar: FC<NavigationBarProps> = ({ sectionWrapper }) => {
     },
     [currItem],
   );
+
   return (
     <nav className="__navigation-container nav__container__actions">
       <Scrollspy
